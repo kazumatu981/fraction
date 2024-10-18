@@ -1,5 +1,4 @@
 export class Fraction {
-
     /**
      * 分子
      */
