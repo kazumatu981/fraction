@@ -1,3 +1,14 @@
+/**
+ * 2つの整数a, bの最大公約数をユークリッドの互除法で求める
+ * @param a 1つ目の整数
+ * @param b 2つ目の整数
+ * @returns 2つの整数a, bの最大公約数
+ */
+export function gcd(a: number, b: number): number {
+    // ユークリッドの互除法でgcdを求める
+    throw new Error('Method not implemented.');
+}
+
 export class Fraction {
     /**
      * 分子
@@ -8,21 +19,24 @@ export class Fraction {
      */
     private _denominator: number;
 
+    private _isNegative: boolean = false;
     /**
      * 分数を表すクラスのコンストラクタ
      * @param numerator   分子
      * @param denominator 分母
      */
     constructor(numerator: number, denominator: number) {
-        this._numerator = numerator;
-        this._denominator = denominator;
+        this._isNegative = numerator * denominator < 0;
+
+        this._numerator = numerator < 0 ? -numerator : numerator;
+        this._denominator = denominator < 0 ? -denominator : denominator;
 
         if (denominator === 0) {
             throw new Error('分母は0にはなりません。');
         }
 
         // 約分します
-        this.normnalize();
+        this.simplify();
     }
 
     /**
@@ -64,7 +78,7 @@ export class Fraction {
     /**
      * この分数を約分します。
      */
-    normnalize(): void {
+    simplify(): void {
         throw new Error('Method not implemented.');
     }
 
