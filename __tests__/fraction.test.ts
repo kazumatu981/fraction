@@ -72,5 +72,42 @@ describe('Fraction', () => {
                 expect(f3.denominator).toBe(6);
             });
         });
+        describe('減算', () => {
+            test('1/2 - 1/3 = -1/6', () => {
+                const f1 = new Fraction(1, 2);
+                const f2 = new Fraction(1, 3);
+                const f3 = f1.subtract(f2);
+                expect(f3.numerator).toBe(-1);
+                expect(f3.denominator).toBe(6);
+            });
+
+            test('-1/2 - 1/3 = -5/6', () => {
+                const f1 = new Fraction(-1, 2); // -1/2
+                const f2 = new Fraction(1, 3); // 1/3
+                const f3 = f1.subtract(f2);
+                expect(f3.numerator).toBe(-5); // -5/6
+                expect(f3.denominator).toBe(6); // 6
+            });
+
+            test('-1/2 - -1/3 = 1/6', () => {
+                const f1 = new Fraction(-1, 2);
+                const f2 = new Fraction(-1, 3);
+                const f3 = f1.subtract(f2);
+                expect(f3.numerator).toBe(1);
+                expect(f3.denominator).toBe(6);
+            });
+
+            test('1/2 - -1/3 = 5/6', () => {
+                const f1 = new Fraction(1, 2);
+                const f2 = new Fraction(-1, 3);
+                const f3 = f1.subtract(f2);
+                expect(f3.numerator).toBe(5);
+                expect(f3.denominator).toBe(6);
+            });
+
+            // TODO: 掛け算のテスト
+
+            // TODO: 割り算のテスト
+        });
     });
 });
