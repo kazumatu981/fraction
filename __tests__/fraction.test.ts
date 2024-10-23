@@ -104,10 +104,9 @@ describe('Fraction', () => {
                 expect(f3.numerator).toBe(5);
                 expect(f3.denominator).toBe(6);
             });
-
-            // TODO: 掛け算のテスト
-
-            // TODO: 割り算のテスト
         });
+        // TODO: 掛け算のテスト
+
+        // TODO: 割り算のテスト
     });
 });
