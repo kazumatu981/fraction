@@ -1,0 +1,28 @@
+{
+  "name": "fraction",
+  "version": "1.0.0",
+  "description": "分数を表すクラスライブラリ(演習用)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc  --project tsconfig.json",
+    "watch": "tsc -w  --project tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazumatu981/fraction.git"
+  },
+  "author": "kazumatu981",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kazumatu981/fraction/issues"
+  },
+  "homepage": "https://github.com/kazumatu981/fraction#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
+  }
+}
