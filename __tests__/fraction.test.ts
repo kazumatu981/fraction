@@ -38,6 +38,34 @@ describe('gcd: 最大公約数を求める', () => {
 });
 
 describe('Fraction', () => {
+    describe('分数を作る', () => {
+        test('1/2', () => {
+            const f = new Fraction(1, 2);
+            expect(f.numerator).toBe(1);
+            expect(f.denominator).toBe(2);
+            expect(f.isNegative).toBe(false);
+        });
+
+        test('-1/2', () => {
+            const f = new Fraction(-1, 2);
+            expect(f.numerator).toBe(1);
+            expect(f.denominator).toBe(2);
+            expect(f.isNegative).toBe(true);
+        });
+
+        test('0/1', () => {
+            const f = new Fraction(0, 1);
+            expect(f.numerator).toBe(0);
+            expect(f.denominator).toBe(1);
+            expect(f.isNegative).toBe(false);
+        });
+
+        test('1/0', () => {
+            expect(() => {
+                new Fraction(1, 0);
+            }).toThrowError('分母は0にはなりません。');
+        });
+    });
     describe('普通の四則演算ができるか？', () => {
         describe('加算', () => {
             test('1/2 + 1/3 = 5/6', () => {
@@ -70,6 +98,14 @@ describe('Fraction', () => {
                 const f3 = f1.add(f2);
                 expect(f3.numerator).toBe(-1);
                 expect(f3.denominator).toBe(6);
+            });
+
+            test('1/4 + 1/6 = 5/12', () => {
+                const f1 = new Fraction(1, 4);
+                const f2 = new Fraction(1, 6);
+                const f3 = f1.add(f2);
+                expect(f3.numerator).toBe(5);
+                expect(f3.denominator).toBe(12);
             });
         });
         describe('減算', () => {
