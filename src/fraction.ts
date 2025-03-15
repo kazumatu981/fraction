@@ -76,9 +76,6 @@ export class Fraction {
 
         this._numerator = numerator < 0 ? -numerator : numerator;
         this._denominator = denominator < 0 ? -denominator : denominator;
-
-        // 約分します
-        this.simplify();
     }
 
     /**
