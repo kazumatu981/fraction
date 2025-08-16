@@ -1,15 +1,4 @@
-/**
- * 2つの整数a, bの最大公約数を求める
- * @param a 1つ目の整数
- * @param b 2つ目の整数
- * @returns 2つの整数a, bの最大公約数
- */
-export function gcd(a: number, b: number): number {
-    // TODO : 最大公約数を求める
-    // 例: gcd(18, 24) = 6
-
-    throw new Error('Method not implemented.');
-}
+import { resolveGcd } from './numerics';
 
 export class Fraction {
     // #region プライベート変数

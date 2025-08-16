@@ -19,7 +19,7 @@ export function findPrimeNumbers(maxNumber: number): number[] {
 /**
  * 素因数分解の要素
  */
-interface PrimeFactor {
+export interface PrimeFactor {
     base: number; // 素因数（素数）
     exponent: number; // 指数（その素数が何回掛けられているか）
 }
@@ -31,5 +31,15 @@ interface PrimeFactor {
  * @throws 負の数であった場合
  */
 export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
+    throw new Error('Not Implemented');
+}
+
+/**
+ * 2つの整数a, bの最大公約数を求める
+ * @param a 1つ目の整数
+ * @param b 2つ目の整数
+ * @returns 2つの整数a, bの最大公約数
+ */
+export function resolveGcd(a: number, b: number): number {
     throw new Error('Not Implemented');
 }
