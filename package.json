@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/kazumatu981/fraction#readme",
   "devDependencies": {
+    "@jest/globals": "^30.0.5",
     "@types/jest": "latest",
     "jest": "latest",
     "ts-jest": "latest",

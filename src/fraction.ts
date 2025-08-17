@@ -65,6 +65,7 @@ export class Fraction {
 
         this._numerator = numerator < 0 ? -numerator : numerator;
         this._denominator = denominator < 0 ? -denominator : denominator;
+        this.simplify();
     }
 
     /**
@@ -139,6 +140,8 @@ export class Fraction {
         // TODO: 約分を実装する
         // (a, b) = (a/gcd(a, b), b/gcd(a, b))
         // 例: (18, 24) = (18/6 , 24/6) = (3, 4)
-        throw new Error('Method not implemented.');
+        const gcd = resolveGcd(this.numerator, this.denominator);
+        this._numerator /= gcd;
+        this._denominator /= gcd;
     }
 }
