@@ -3,7 +3,7 @@
  * @param sourceNumber 対象の数
  * @returns 正の整数かどうかを表すブール値
  */
-export function isNumeric(sourceNumber: number): boolean {
+export function isNonNegativeNumeric(sourceNumber: number): boolean {
     return Number.isInteger(sourceNumber) && sourceNumber > 0;
 }
 
