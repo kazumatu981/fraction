@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "build:check": "tsc"
+    "build:check": "tsc",
+    "build:format": "prettier src --write"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "@jest/globals": "^30.0.5",
     "@types/jest": "latest",
     "jest": "latest",
+    "prettier": "^3.6.2",
     "ts-jest": "latest",
     "typescript": "latest"
   }
