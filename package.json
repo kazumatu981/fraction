@@ -2,8 +2,7 @@
   "name": "fraction",
   "version": "1.0.0",
   "description": "分数を表すクラスライブラリ(演習用)",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "tsc  --project tsconfig.json",
