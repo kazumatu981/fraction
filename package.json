@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "build": "tsc  --project tsconfig.json",
-    "watch": "tsc -w  --project tsconfig.json"
+    "build:check": "tsc"
   },
   "repository": {
     "type": "git",
