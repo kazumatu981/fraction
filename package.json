@@ -6,7 +6,10 @@
   "scripts": {
     "test": "jest",
     "build:check": "tsc",
-    "build:format": "prettier src --write"
+    "build:format": "prettier src --write",
+    "build:release": "node bundle.mjs release",
+    "build:release_debug": "node bundle.mjs release_debug",
+    "build:develop": "node bundle.mjs develop"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
   "devDependencies": {
     "@jest/globals": "^30.0.5",
     "@types/jest": "latest",
+    "esbuild": "^0.25.9",
     "jest": "latest",
     "prettier": "^3.6.2",
     "ts-jest": "latest",
