@@ -1,7 +1,11 @@
-/** @typ {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
-    preset: 'ts-jest',
+import { createDefaultPreset } from 'ts-jest';
+
+const tsJestTransformCfg = createDefaultPreset().transform;
+
+/** @type {import("jest").Config} **/
+export default {
     testEnvironment: 'node',
-    verbose: true,
-    testMatch: ['**/*.test.ts'],
+    transform: {
+        ...tsJestTransformCfg,
+    },
 };
