@@ -1,12 +1,14 @@
 import { generateDocumentation } from 'tsdoc-markdown';
-import { tsdocConfig } from './tsdoc.condig.mjs';
+import { tsdocConfig } from './tsdoc.config.mjs';
 import path from 'path';
 import { mkdir } from 'fs/promises';
 
-// outputFileの親ディレクトリをtargetDirに格納
-const targetDir = path.dirname(tsdocConfig.outputFile);
-
-// 必要なディレクトリツリーを作成
-await mkdir(targetDir, { recursive: true });
-
-generateDocumentation(tsdocConfig);
+const fileNames = tsdocConfig.inputFiles.map((fileName) => {
+    const outFileName = fileName
+        .replace(tsdocConfig.inputFilesBaseDir, tsdocConfig.outputFilesBaseDir)
+        .replace('.ts', '.md');
+    return {
+        input: fileName,
+        output: outFileName,
+    };
+});
