@@ -10,6 +10,7 @@
     "build:bundle-release": "node bundle.mjs release",
     "build:bundle-release_debug": "node bundle.mjs release_debug",
     "build:bundle-develop": "node bundle.mjs develop",
+    "build:docs": "node tsdoc.mjs",
     "build:clean": "rimraf dist"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "prettier": "latest",
     "rimraf": "latest",
     "ts-jest": "latest",
+    "tsdoc-markdown": "^1.4.1",
     "typescript": "latest",
     "typescript-eslint": "^8.40.0"
   }
