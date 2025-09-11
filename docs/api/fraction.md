@@ -1,6 +1,6 @@
-## :factory: Fraction
+# Fraction
 
-### Constructors
+## Constructors
 
 `public`: 分数を表すクラスのコンストラクタ
 
@@ -10,23 +10,23 @@ Parameters:
 * `denominator`: 分母
 
 
-### Methods
+## Methods
 
-- [setValue](#gear-setvalue)
-- [add](#gear-add)
-- [subtract](#gear-subtract)
-- [multiply](#gear-multiply)
-- [divide](#gear-divide)
-- [equals](#gear-equals)
-- [toString](#gear-tostring)
+- [setValue](#setvalue)
+- [add](#add)
+- [subtract](#subtract)
+- [multiply](#multiply)
+- [divide](#divide)
+- [equals](#equals)
+- [toString](#tostring)
 
-#### :gear: setValue
+### setValue
 
 | Method | Type |
 | ---------- | ---------- |
 | `setValue` | `(numerator: number, denominator: number) => void` |
 
-#### :gear: add
+### add
 
 この分数とotherを足し合わせた結果を返す
 
@@ -43,7 +43,7 @@ Returns:
 
 足し合わせた結果
 
-#### :gear: subtract
+### subtract
 
 この分数からotherを引いた結果を返す
 
@@ -60,7 +60,7 @@ Returns:
 
 引いた結果
 
-#### :gear: multiply
+### multiply
 
 この分数とotherを掛けた結果を返す
 
@@ -77,7 +77,7 @@ Returns:
 
 掛けた結果
 
-#### :gear: divide
+### divide
 
 他の分数でこの分数を割った結果を返す
 
@@ -94,7 +94,7 @@ Returns:
 
 割った結果
 
-#### :gear: equals
+### equals
 
 指定された分数がこの分数と等しいかどうかを判定します。
 
@@ -111,7 +111,7 @@ Returns:
 
 分数が等しい場合はtrue、それ以外の場合はfalse
 
-#### :gear: toString
+### toString
 
 分数を文字列形式で返します。
 

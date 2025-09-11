@@ -12,3 +12,18 @@ const fileNames = tsdocConfig.inputFiles.map((fileName) => {
         output: outFileName,
     };
 });
+
+const buildTasks = fileNames.map(async ({ input, output }) => {
+    await mkdir(path.dirname(output), { recursive: true });
+    _buildTsConfig(input, output);
+});
+
+await Promise.all(buildTasks);
+
+function _buildTsConfig(tsFileName, mdFileName) {
+    generateDocumentation({
+        inputFiles: [tsFileName],
+        outputFile: mdFileName,
+        ...tsdocConfig.commonConfig,
+    });
+}
