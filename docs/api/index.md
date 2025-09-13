@@ -22,7 +22,7 @@ numerics.ts には、約分で使う最大公約数を求める関数や、素�
 ## コールグラフ
 
 ```mermaid
-graph LR
+graph
   %% Fraction クラス側
   subgraph Fraction
     F_Constructor["Fraction.constructor"]
@@ -55,6 +55,7 @@ graph LR
   F_multiply --> F_Constructor
   F_divide --> F_Constructor
 
+  N_resolveGcd --> N_extractPrimeFactors
   N_extractPrimeFactors --> N_findPrimeNumbers
   N_findPrimeNumbers --> N_isNonNegativeNumeric
   N_extractPrimeFactors --> N_isNonNegativeNumeric
