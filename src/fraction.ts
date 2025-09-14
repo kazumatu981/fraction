@@ -76,6 +76,7 @@ export class Fraction {
     public add(other: Fraction): Fraction {
         // TODO: 足し算を実装する
         // (a, b) + (c, d) = (a*d + b*c, b*d)
+        //  最小公倍数を使って通分したほうがいいかも？？
         throw new Error('Method not implemented.');
     }
 
@@ -87,6 +88,7 @@ export class Fraction {
     public subtract(other: Fraction): Fraction {
         // TODO: 引き算を実装する
         // (a, b) - (c, d) = (a*d-b*c, b*d)
+        //  最小公倍数を使って通分したほうがいいかも？？
         throw new Error('Method not implemented.');
     }
 
@@ -140,8 +142,6 @@ export class Fraction {
         // TODO: 約分を実装する
         // (a, b) = (a/gcd(a, b), b/gcd(a, b))
         // 例: (18, 24) = (18/6 , 24/6) = (3, 4)
-        const gcd = resolveGcd(this.numerator, this.denominator);
-        this._numerator /= gcd;
-        this._denominator /= gcd;
+        throw new Error('Method not Implemented');
     }
 }
