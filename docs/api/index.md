@@ -25,29 +25,30 @@ numerics.ts には、約分で使う最大公約数を求める関数や、素�
 graph
   %% Fraction クラス側
   subgraph Fraction
-    F_Constructor["Fraction.constructor"]
-    F_setValue["Fraction.setValue"]
-    F_simplify["Fraction.simplify"]
-    F_add["Fraction.add"]
-    F_subtract["Fraction.subtract"]
-    F_multiply["Fraction.multiply"]
-    F_divide["Fraction.divide"]
-    F_equals["Fraction.equals"]
-    F_toString["Fraction.toString"]
-    F_getters["getters (numerator / denominator / isNegative)"]
+    F_Constructor["Fraction.constructor<br/>分数オブジェクトのインスタンス生成"]
+    F_setValue["Fraction.setValue<br/>分子と分母を設定し正規化する"]
+    F_simplify["Fraction.simplify<br/>分数を約分する"]
+    F_add["Fraction.add<br/>他の分数と加算する"]
+    F_subtract["Fraction.subtract<br/>他の分数を引く"]
+    F_multiply["Fraction.multiply<br/>他の分数と掛ける"]
+    F_divide["Fraction.divide<br/>他の分数で割る（逆数を掛ける）"]
+    F_equals["Fraction.equals<br/>等価性を判定する"]
+    F_toString["Fraction.toString<br/>文字列に変換する"]
+    F_getters["getters (numerator / denominator / isNegative)<br/>分子・分母・符号を取得する"]
   end
 
   %% numerics.ts 側
   subgraph Numerics
-    N_isNonNegativeNumeric["isNonNegativeNumeric"]
-    N_findPrimeNumbers["findPrimeNumbers"]
-    N_extractPrimeFactors["extractPrimeFactors"]
-    N_resolveGcd["resolveGcd"]
+    N_isNonNegativeNumeric["isNonNegativeNumeric<br/>正の整数か確認する"]
+    N_findPrimeNumbers["findPrimeNumbers<br/>指定範囲の素数を列挙する"]
+    N_extractPrimeFactors["extractPrimeFactors<br/>数を素因数分解する"]
+    N_resolveGcd["resolveGcd<br/>最大公約数を求める"]
   end
 
   %% 想定される呼び出し関係（JSDoc/関数名から推定）
   F_Constructor --> F_setValue
   F_setValue --> F_simplify
+  F_setValue --> N_isNonNegativeNumeric
   F_simplify --> N_resolveGcd
 
   F_add --> F_Constructor
@@ -56,6 +57,7 @@ graph
   F_divide --> F_Constructor
 
   N_resolveGcd --> N_extractPrimeFactors
+  N_resolveGcd --> N_isNonNegativeNumeric
   N_extractPrimeFactors --> N_findPrimeNumbers
   N_findPrimeNumbers --> N_isNonNegativeNumeric
   N_extractPrimeFactors --> N_isNonNegativeNumeric
