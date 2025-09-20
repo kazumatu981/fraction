@@ -1,11 +1,5 @@
-/**
- * 正の整数かどうかを返却します。
- * @param sourceNumber 対象の数
- * @returns 正の整数かどうかを表すブール値
- */
-export function isNonNegativeNumeric(sourceNumber: number): boolean {
-    return Number.isInteger(sourceNumber) && sourceNumber > 0;
-}
+import { __mustBeInteger, __mustNotBeNegative, __mustNotBeZero } from './assert';
+import { PrimeNumberTable } from './prime-number-table';
 
 /**
  * maxNumberで指定した数までの素数を求める
@@ -13,7 +7,7 @@ export function isNonNegativeNumeric(sourceNumber: number): boolean {
  * @returns 発見した素数
  */
 export function findPrimeNumbers(maxNumber: number): number[] {
-    throw new Error('Not Implemented.');
+    return PrimeNumberTable.until(maxNumber);
 }
 
 /**
@@ -37,6 +31,10 @@ export interface PrimeFactor {
  * @throws 負の数であった場合
  */
 export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
+    __mustBeInteger(sourceNumber);
+    __mustNotBeNegative(sourceNumber);
+    __mustNotBeZero(sourceNumber);
+
     throw new Error('Not Implemented');
 }
 
@@ -47,6 +45,12 @@ export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
  * @returns 2つの整数a, bの最大公約数
  */
 export function resolveGcd(a: number, b: number): number {
+    [a, b].forEach((x) => {
+        __mustBeInteger(x);
+        __mustNotBeNegative(x);
+        __mustNotBeZero(x);
+    });
+
     throw new Error('Not Implemented');
 }
 
@@ -57,5 +61,11 @@ export function resolveGcd(a: number, b: number): number {
  * @returns 2つの整数a, bの最小公倍数
  */
 export function resolveLcm(a: number, b: number): number {
+    [a, b].forEach((x) => {
+        __mustBeInteger(x);
+        __mustNotBeNegative(x);
+        __mustNotBeZero(x);
+    });
+
     throw new Error('Not Implemented');
 }

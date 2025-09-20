@@ -1,6 +1,5 @@
 import { describe, test, expect } from '@jest/globals';
 import {
-    isNonNegativeNumeric,
     findPrimeNumbers,
     extractPrimeFactors,
     resolveGcd,
@@ -8,42 +7,6 @@ import {
 } from '../../src/numerics';
 
 import { isValidPrimeFactors, expectPrimeFactors } from './numerics_test-util';
-
-describe('isNonNegativeNumeric', () => {
-    test('[true]: 1 は非負な整数', () => {
-        expect(isNonNegativeNumeric(1)).toBe(true);
-    });
-    test('[true]: 5 は非負な整数', () => {
-        expect(isNonNegativeNumeric(5)).toBe(true);
-    });
-    test('[true]: 10 は非負な整数', () => {
-        expect(isNonNegativeNumeric(10)).toBe(true);
-    });
-    test('[false]: 0 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(0)).toBe(false);
-    });
-    test('[false]: -1 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-1)).toBe(false);
-    });
-    test('[false]: -123 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-123)).toBe(false);
-    });
-    test('[false]: 0.5 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(0.5)).toBe(false);
-    });
-    test('[false]: -0.5 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-0.5)).toBe(false);
-    });
-    test('[false][限界テスト]: NaN はFalseを返却', () => {
-        expect(isNonNegativeNumeric(NaN)).toBe(false);
-    });
-    test('[false][限界テスト]: Infinity はFalseを返却', () => {
-        expect(isNonNegativeNumeric(Infinity)).toBe(false);
-    });
-    test('[false][限界テスト]: -Infinity はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-Infinity)).toBe(false);
-    });
-});
 
 describe('findPrimeNumbers', () => {
     describe('素数を返却できることを確認する', () => {

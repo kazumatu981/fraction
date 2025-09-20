@@ -50,11 +50,11 @@ describe('[Unit][PrimeNumberTable]: 基本機能 素数テーブルの生成', (
         const actual = PrimeNumberTable.until(test);
         expect(actual).toEqual(expected);
     });
-    test('0までの素数を列挙', () => {
+    test('0はエラーになることを確認', () => {
         const test = 0;
-        const expected: number[] = [];
-        const actual = PrimeNumberTable.until(test);
-        expect(actual).toEqual(expected);
+        expect(() => {
+            PrimeNumberTable.until(test);
+        }).toThrow();
     });
     test('負の数はエラーになることの確認', () => {
         const test = -1;
