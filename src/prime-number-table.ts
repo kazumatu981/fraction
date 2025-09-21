@@ -8,7 +8,14 @@ type PrimeTableItem = {
 
 /**
  * 素数表を管理するクラス:
- * エラトステネスのふるい法を使って素数テーブルを構築します。
+ * エラトステネスのふるい法を使って素数テーブルの管理クラス。
+ * @example
+ * ```ts
+ * const primeTable = PrimeNumberTable.getTable();
+ * console.log(primeTable.until(30)); // [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+ * console.log(primeTable.isPrime(29)); // true
+ * console.log(primeTable.isPrime(30)); // false
+ * ```
  */
 export class PrimeNumberTable {
     // #region Local Fields

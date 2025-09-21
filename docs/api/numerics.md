@@ -1,26 +1,9 @@
 # Functions
 
-- [isNonNegativeNumeric](#isnonnegativenumeric)
 - [findPrimeNumbers](#findprimenumbers)
 - [extractPrimeFactors](#extractprimefactors)
 - [resolveGcd](#resolvegcd)
-
-## isNonNegativeNumeric
-
-正の整数かどうかを返却します。
-
-| Function | Type |
-| ---------- | ---------- |
-| `isNonNegativeNumeric` | `(sourceNumber: number) => boolean` |
-
-Parameters:
-
-* `sourceNumber`: 対象の数
-
-
-Returns:
-
-正の整数かどうかを表すブール値
+- [resolveLcm](#resolvelcm)
 
 ## findPrimeNumbers
 
@@ -73,5 +56,23 @@ Parameters:
 Returns:
 
 2つの整数a, bの最大公約数
+
+## resolveLcm
+
+2つの整数a, bの最小公倍数
+
+| Function | Type |
+| ---------- | ---------- |
+| `resolveLcm` | `(a: number, b: number) => number` |
+
+Parameters:
+
+* `a`: 1つ目の整数
+* `b`: 2つ目の整数
+
+
+Returns:
+
+2つの整数a, bの最小公倍数
 
 

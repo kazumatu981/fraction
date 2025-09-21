@@ -1,4 +1,4 @@
-import { resolveGcd } from './numerics';
+import { resolveGcd, resolveLcm } from './numerics';
 
 export class Fraction {
     // #region プライベート変数
