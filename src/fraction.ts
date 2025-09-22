@@ -1,3 +1,4 @@
+import { __mustBeInteger, __mustNotBeNegative, __mustNotBeZero } from './assert';
 import { resolveGcd, resolveLcm } from './numerics';
 
 export class Fraction {
@@ -17,7 +18,18 @@ export class Fraction {
     // #endregion
 
     /**
-     * 分数を表すクラスのコンストラクタ
+     * 分数を表すクラス:
+     * 分子と分母を整数で表します。
+     *
+     * @example
+     * ```ts
+     * const frac1 = new Fraction(1, 2); // 1/2
+     * const frac2 = new Fraction(-3, 4); // -3/4
+     * const frac3 = new Fraction(5, -6); // -5/6
+     * const frac4 = new Fraction(-7, -8); // 7/8
+     * console.log(frac1.toString()); // "1/2"
+     * ```
+     *
      * @param numerator   分子
      * @param denominator 分母
      */
@@ -27,6 +39,14 @@ export class Fraction {
 
     /**
      * 分子を取得
+     *
+     * @example
+     * ```ts
+     * const frac = new Fraction(3, 4);
+     * console.log(frac.numerator); // 3
+     * console.log(frac.denominator); // 4
+     * ```
+     *
      * @returns 分子
      */
     public get numerator(): number {
@@ -35,6 +55,14 @@ export class Fraction {
 
     /**
      * 分母を取得
+     *
+     * @example
+     * ```ts
+     * const frac = new Fraction(3, 4);
+     * console.log(frac.numerator); // 3
+     * console.log(frac.denominator); // 4
+     * ```
+     *
      * @returns 分母
      */
     public get denominator(): number {
@@ -43,16 +71,51 @@ export class Fraction {
 
     /**
      * その分数が負かどうかを取得
+     *
+     * @example
+     * ```ts
+     * const frac1 = new Fraction(1, 2);
+     * console.log(frac1.isNegative); // false
+     * const frac2 = new Fraction(-3, 4);
+     * console.log(frac2.isNegative); // true
+     * const frac3 = new Fraction(5, -6);
+     * console.log(frac3.isNegative); // true
+     * const frac4 = new Fraction(-7, -8);
+     * console.log(frac4.isNegative); // false
+     * ```
+     *
      * @returns その分数が負の場合はtrue
      */
     public get isNegative(): boolean {
         return this._isNegative;
     }
 
+    /**
+     * 分子と分母を設定します。
+     * 
+     * @param numerator 分子
+     * @param denominator 分母
+     *
+     *  @example
+     * ```ts
+     * const frac = new Fraction(1, 2);
+     * console.log(frac.toString()); // "1/2"
+     * frac.setValue(3, 4);
+     * console.log(frac.toString()); // "3/4"
+     * frac.setValue(-5, 6);
+     * console.log(frac.toString()); // "-5/6"
+     * ```
+     *
+     * @throws numeratorまたはdenominatorが整数でない場合、またはdenominatorが0の場合はエラーを投げる。
+     * 
+     * @remarks
+     * numeratorは整数でなければならない。
+     * denominatorは0であってはならない。
+     */
     public setValue(numerator: number, denominator: number) {
-        if (denominator === 0) {
-            throw new Error('分母は0にはなりません。');
-        }
+        __mustBeInteger(numerator, 'numerator');
+        __mustBeInteger(denominator, 'denominator');
+        __mustNotBeZero(denominator, 'denominator');
 
         if (numerator === 0) {
             this._isNegative = false;
@@ -70,6 +133,15 @@ export class Fraction {
 
     /**
      * この分数とotherを足し合わせた結果を返す
+     * 
+     * @example
+     * ```ts
+     * const frac1 = new Fraction(1, 2);
+     * const frac2 = new Fraction(1, 3);
+     * const result = frac1.add(frac2);
+     * console.log(result.toString()); // "5/6"
+     * ```
+     * 
      * @param other 足し合わせる分数
      * @returns 足し合わせた結果
      */
@@ -82,6 +154,15 @@ export class Fraction {
 
     /**
      * この分数からotherを引いた結果を返す
+     * 
+     * @example
+     * ```ts
+     * const frac1 = new Fraction(3, 4);
+     * const frac2 = new Fraction(1, 2);
+     * const result = frac1.subtract(frac2);
+     * console.log(result.toString()); // "1/4"
+     * ```
+     * 
      * @param other 引く分数
      * @returns 引いた結果
      */
@@ -94,6 +175,15 @@ export class Fraction {
 
     /**
      * この分数とotherを掛けた結果を返す
+     * 
+     * @example
+     * ```ts
+     * const frac1 = new Fraction(1, 2);
+     * const frac2 = new Fraction(2, 3);
+     * const result = frac1.multiply(frac2);
+     * console.log(result.toString()); // "1/3"
+     * ```
+     * 
      * @param other 掛ける分数
      * @returns 掛けた結果
      */
@@ -105,8 +195,19 @@ export class Fraction {
 
     /**
      * 他の分数でこの分数を割った結果を返す
+     * 
+     * @example
+     * ```ts
+     * const frac1 = new Fraction(1, 2);
+     * const frac2 = new Fraction(2, 5);
+     * const result = frac1.divide(frac2);
+     * console.log(result.toString()); // "5/4"
+     * ```
+     * 
      * @param other 割る分数
      * @returns 割った結果
+     * 
+     * @throws otherが0の場合はエラーが発生する。
      */
     public divide(other: Fraction): Fraction {
         // TODO: 割り算を実装する
@@ -117,6 +218,16 @@ export class Fraction {
 
     /**
      * 指定された分数がこの分数と等しいかどうかを判定します。
+     * 
+     * @example
+     * ```ts
+     * const frac1 = new Fraction(1, 2);
+     * const frac2 = new Fraction(2, 4);
+     * console.log(frac1.equals(frac2)); // true
+     * const frac3 = new Fraction(3, 4);
+     * console.log(frac1.equals(frac3)); // false
+     * ```
+     * 
      * @param other 比較する分数
      * @returns 分数が等しい場合はtrue、それ以外の場合はfalse
      */

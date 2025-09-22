@@ -13,9 +13,9 @@
 このプロジェクトは、分数（たとえば 3/4 や -1/2）の扱いを簡単にするための小さなライブラリです。想定される使い方を以下に示します。
 
 ```ts
-// １つ目の分数
+// １つ目の分数 (1/3)
 const fraction1 = new Fraction(1, 3);
-// ２つ目の分数
+// ２つ目の分数 (1/2)
 const fraction2 = new Fraction(1, 2);
 
 // 足し算をする
@@ -58,18 +58,54 @@ console.log(lcm); // 84
 
 #### 最もディープな素数判定ライブラリ `prime-number-table.ts`
 
-素数に関する機能を集約したのが、`pri`
-与えられた数が素数であるかどうか、
+素数に関する機能を集約したのが、`prime-number-table.ts`です。
+与えられた値までの素数を計算します。
+
+```ts
+console.log(getPrimeNumberUntil(30)); // [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+const primeTable = PrimeNumberTable.getTable();
+console.log(primeTable.isPrime(29)); // true
+console.log(primeTable.isPrime(30)); // false
+```
+
+この関数は、素因数分解には欠かせません。
 
 ## ファイル一覧
 
-| ファイル名                   | 概要                           |
-| ---------------------------- | ------------------------------ |
-| [numerics.ts](./numerics.md) | 正の整数を取り扱うライブラリ   |
-| [fraction.ts](./fraction.md) | 分数を表すライブラリ           |
-| prime-number-table.ts        | 素数判定テーブル管理ライブラリ |
+| モジュール名         | API仕様書ファイル名                              | 概要                           |
+| -------------------- | ------------------------------------------------ | ------------------------------ |
+| **Numerics**         | [numerics.ts](./numerics.md)                     | 正の整数を取り扱うライブラリ   |
+| **Fraction**         | [fraction.ts](./fraction.md)                     | 分数を表すライブラリ           |
+| **PrimeNumberTable** | [prime-number-table.ts](./prime-number-table.md) | 素数判定テーブル管理ライブラリ |
 
 ## コールグラフ
+
+### 概要コールグラフ
+
+```mermaid
+graph LR
+  Fraction --> Numerics --> PrimeNumberTable
+  subgraph Fraction
+    fraction.ts
+  end
+  subgraph Numerics
+    numerics.ts
+  end
+  subgraph PrimeNumberTable
+    prime-number-table.ts
+  end
+```
+
+- **Fraction** は分数の計算をするため、通分や約分を行う必要があります。
+- 通分や約分を行うためには、**最大公約数**や**最大公倍数**を求める必要があります。
+- **最大公約数**や**最大公倍数**を求めるためには**素因数分解**をする必要があります。
+- **最大公約数**や**最大公倍数**、**素因数分解**を担うのが **Numerics** です。
+- さらに **素因数分解** には素数の列が必要で、素数を取得するのが **PrimeNumberTable**です。
+
+### 詳細コールグラフ
+
+さらに想定されるコールグラフは以下の通りです。
 
 ```mermaid
 graph

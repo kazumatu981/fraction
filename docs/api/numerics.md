@@ -1,26 +1,8 @@
 # Functions
 
-- [findPrimeNumbers](#findprimenumbers)
 - [extractPrimeFactors](#extractprimefactors)
 - [resolveGcd](#resolvegcd)
 - [resolveLcm](#resolvelcm)
-
-## findPrimeNumbers
-
-maxNumberで指定した数までの素数を求める
-
-| Function | Type |
-| ---------- | ---------- |
-| `findPrimeNumbers` | `(maxNumber: number) => number[]` |
-
-Parameters:
-
-* `maxNumber`: 素数を求める最大値
-
-
-Returns:
-
-発見した素数
 
 ## extractPrimeFactors
 

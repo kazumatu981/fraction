@@ -1,14 +1,5 @@
 import { __mustBeInteger, __mustNotBeNegative, __mustNotBeZero } from './assert';
-import { PrimeNumberTable } from './prime-number-table';
-
-/**
- * maxNumberで指定した数までの素数を求める
- * @param maxNumber 素数を求める最大値
- * @returns 発見した素数
- */
-export function findPrimeNumbers(maxNumber: number): number[] {
-    return PrimeNumberTable.until(maxNumber);
-}
+import { getPrimeNumberUntil } from './prime-number-table';
 
 /**
  * 素因数分解の要素
@@ -34,6 +25,8 @@ export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
     __mustBeInteger(sourceNumber);
     __mustNotBeNegative(sourceNumber);
     __mustNotBeZero(sourceNumber);
+
+    const primes = getPrimeNumberUntil(sourceNumber);
 
     throw new Error('Not Implemented');
 }

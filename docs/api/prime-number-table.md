@@ -1,3 +1,25 @@
+# Functions
+
+- [getPrimeNumberUntil](#getprimenumberuntil)
+
+## getPrimeNumberUntil
+
+maxValue以下の素数を取得します。
+
+| Function | Type |
+| ---------- | ---------- |
+| `getPrimeNumberUntil` | `(maxValue: number) => number[]` |
+
+Parameters:
+
+* `maxValue`: 最大値
+
+
+Returns:
+
+maxValue以下の素数の配列
+
+
 # PrimeNumberTable
 
 素数表を管理するクラス:
@@ -7,7 +29,7 @@ Examples:
 
 ```ts
 const primeTable = PrimeNumberTable.getTable();
-console.log(primeTable.until(30)); // [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+console.log(primeTable.until(30)); // [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 console.log(primeTable.isPrime(29)); // true
 console.log(primeTable.isPrime(30)); // false
 ```

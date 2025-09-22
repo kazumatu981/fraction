@@ -1,8 +1,31 @@
 import { __mustNotBeNegative, __mustBeInteger, __mustNotBeZero } from './assert';
+
+/**
+ * maxValue以下の素数を取得します。
+ * @param maxValue 最大値
+ * @returns maxValue以下の素数の配列
+ * @throws maxValueが正の整数ではない場合、例外が発生する
+ */
+export function getPrimeNumberUntil(maxValue: number): number[] {
+    return PrimeNumberTable.until(maxValue);
+}
+
+/**
+ * シングルトンのインスタンス
+ */
 let __theInstance: PrimeNumberTable | null = null;
 
+/**
+ * 素数テーブルのアイテム
+ */
 type PrimeTableItem = {
+    /**
+     * 数値
+     */
     number: number;
+    /**
+     * 素数であるかどうか
+     */
     isPrime: boolean;
 };
 
@@ -12,7 +35,7 @@ type PrimeTableItem = {
  * @example
  * ```ts
  * const primeTable = PrimeNumberTable.getTable();
- * console.log(primeTable.until(30)); // [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+ * console.log(primeTable.until(30)); // [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
  * console.log(primeTable.isPrime(29)); // true
  * console.log(primeTable.isPrime(30)); // false
  * ```

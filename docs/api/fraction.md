@@ -2,7 +2,8 @@
 
 ## Constructors
 
-`public`: 分数を表すクラスのコンストラクタ
+`public`: 分数を表すクラス:
+分子と分母を整数で表します。
 
 Parameters:
 
@@ -22,9 +23,29 @@ Parameters:
 
 ### setValue
 
+分子と分母を設定します。
+
 | Method | Type |
 | ---------- | ---------- |
 | `setValue` | `(numerator: number, denominator: number) => void` |
+
+Parameters:
+
+* `numerator`: 分子
+* `denominator`: 分母
+
+
+Examples:
+
+```ts
+const frac = new Fraction(1, 2);
+console.log(frac.toString()); // "1/2"
+frac.setValue(3, 4);
+console.log(frac.toString()); // "3/4"
+frac.setValue(-5, 6);
+console.log(frac.toString()); // "-5/6"
+```
+
 
 ### add
 
@@ -43,6 +64,16 @@ Returns:
 
 足し合わせた結果
 
+Examples:
+
+```ts
+const frac1 = new Fraction(1, 2);
+const frac2 = new Fraction(1, 3);
+const result = frac1.add(frac2);
+console.log(result.toString()); // "5/6"
+```
+
+
 ### subtract
 
 この分数からotherを引いた結果を返す
@@ -59,6 +90,16 @@ Parameters:
 Returns:
 
 引いた結果
+
+Examples:
+
+```ts
+const frac1 = new Fraction(3, 4);
+const frac2 = new Fraction(1, 2);
+const result = frac1.subtract(frac2);
+console.log(result.toString()); // "1/4"
+```
+
 
 ### multiply
 
@@ -77,6 +118,16 @@ Returns:
 
 掛けた結果
 
+Examples:
+
+```ts
+const frac1 = new Fraction(1, 2);
+const frac2 = new Fraction(2, 3);
+const result = frac1.multiply(frac2);
+console.log(result.toString()); // "1/3"
+```
+
+
 ### divide
 
 他の分数でこの分数を割った結果を返す
@@ -94,6 +145,16 @@ Returns:
 
 割った結果
 
+Examples:
+
+```ts
+const frac1 = new Fraction(1, 2);
+const frac2 = new Fraction(2, 5);
+const result = frac1.divide(frac2);
+console.log(result.toString()); // "5/4"
+```
+
+
 ### equals
 
 指定された分数がこの分数と等しいかどうかを判定します。
@@ -110,6 +171,17 @@ Parameters:
 Returns:
 
 分数が等しい場合はtrue、それ以外の場合はfalse
+
+Examples:
+
+```ts
+const frac1 = new Fraction(1, 2);
+const frac2 = new Fraction(2, 4);
+console.log(frac1.equals(frac2)); // true
+const frac3 = new Fraction(3, 4);
+console.log(frac1.equals(frac3)); // false
+```
+
 
 ### toString
 
