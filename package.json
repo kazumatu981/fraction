@@ -7,10 +7,10 @@
     "test": "jest",
     "build:check": "tsc",
     "build:format": "prettier src --write",
-    "build:bundle-release": "node bundle.mjs release",
-    "build:bundle-release_debug": "node bundle.mjs release_debug",
-    "build:bundle-develop": "node bundle.mjs develop",
-    "build:docs": "node tsdoc.mjs",
+    "build:release": "node bin/build.js release",
+    "build:release_debug": "node bin/build.js release_debug",
+    "build:develop": "node bin/build.js develop",
+    "build:docs": "node bin/tsdoc.js",
     "build:clean": "rimraf dist"
   },
   "repository": {

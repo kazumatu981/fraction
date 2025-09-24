@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { describe, test, expect, afterEach } from '@jest/globals';
 import { PrimeNumberTable } from '../../src/prime-number-table';
 
