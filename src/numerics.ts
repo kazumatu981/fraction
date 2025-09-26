@@ -27,8 +27,25 @@ export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
     __mustNotBeZero(sourceNumber);
 
     const primes = getPrimeNumberUntil(sourceNumber);
-
-    throw new Error('Not Implemented');
+    const result: PrimeFactor[] = [];
+    let remainder = sourceNumber;
+    for (const prime of primes) {
+        if (prime > sourceNumber) {
+            break;
+        }
+        let exponent = 0;
+        while (remainder % prime === 0) {
+            exponent++;
+            remainder = remainder / prime;
+        }
+        if (exponent > 0) {
+            result.push({ base: prime, exponent: exponent });
+        }
+        if (remainder === 1) {
+            break;
+        }
+    }
+    return result;
 }
 
 /**
