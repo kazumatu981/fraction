@@ -25,3 +25,5 @@ export function expectPrimeFactors(actual: PrimeFactor[]): PrimeFactorArrayCompa
         },
     };
 }
+
+class PrimeFactorValidator {}
