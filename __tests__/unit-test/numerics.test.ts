@@ -1,7 +1,7 @@
 import { describe, test, expect, jest } from '@jest/globals';
 import { extractPrimeFactors, resolveGcd, resolveLcm, type PrimeFactor } from '../../src/numerics';
 
-import { isValidPrimeFactors, expectPrimeFactors } from './numerics_test-util';
+import { expectPrimeFactors } from './numerics_test-util';
 
 const PRIME_NUMBERS = [
     2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
@@ -23,6 +23,12 @@ jest.mock('../../src/prime-number-table', () => {
 });
 
 describe('extractPrimeFactors: 素因数分解ができることを確認する', () => {
+    test('1を素因数分解する', () => {
+        const actual = extractPrimeFactors(1);
+
+        expectPrimeFactors(actual).isEmpty();
+    });
+
     test('素数2を素因数分解する', () => {
         const expected: PrimeFactor[] = [
             {
@@ -32,8 +38,9 @@ describe('extractPrimeFactors: 素因数分解ができることを確認する'
         ];
         const actual = extractPrimeFactors(2);
 
-        expectPrimeFactors(actual).toEqual(expected);
+        expectPrimeFactors(actual).isValid().toEqual(expected);
     });
+
     test('6を素因数分解する', () => {
         const expected: PrimeFactor[] = [
             {
@@ -47,21 +54,10 @@ describe('extractPrimeFactors: 素因数分解ができることを確認する'
         ];
         const actual = extractPrimeFactors(6);
 
-        expectPrimeFactors(actual).toEqual(expected);
+        expectPrimeFactors(actual).isValid().toEqual(expected);
     });
+
     // TODO テストを追加する
-
-    test('1を素因数分解する', () => {
-        const expected: PrimeFactor[] = [
-            {
-                base: 1,
-                exponent: 1,
-            },
-        ];
-        const actual = extractPrimeFactors(1);
-
-        expectPrimeFactors(actual).toEqual(expected);
-    });
 });
 
 describe('extractPrimeFactors: エラーケース', () => {
