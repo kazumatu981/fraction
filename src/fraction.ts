@@ -146,7 +146,7 @@ export class Fraction {
      * @returns 足し合わせた結果
      */
     public add(other: Fraction): Fraction {
-        // TODO: 足し算を実装する
+        // LEARN: [CMN004]: `Fraction.add()`の単体テストと実装をしよう
         // (a, b) + (c, d) = (a*d + b*c, b*d)
         //  最小公倍数を使って通分したほうがいいかも？？
         throw new Error('Method not implemented.');

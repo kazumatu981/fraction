@@ -61,4 +61,14 @@ describe('Fraction 単体テスト', () => {
             }).toThrow();
         });
     });
+    // LEARN: [CMN004]: `Fraction.add()`の単体テストと実装をしよう
+    describe('add', () => {
+        test('1/2 + 1/3 = 5/6', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(1, 3);
+            const result = f1.add(f2);
+            expect(result.numerator).toBe(5);
+            expect(result.denominator).toBe(6);
+        });
+    });
 });
