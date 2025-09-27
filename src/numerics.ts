@@ -15,6 +15,7 @@ export interface PrimeFactor {
     exponent: number;
 }
 
+// LEARN [CMN006][チャレンジ課題]: コードのリファクタリング
 /**
  * 与えられた数を素因数分解をします。
  * @param sourceNumber 分解対象の数
