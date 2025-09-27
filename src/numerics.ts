@@ -15,7 +15,8 @@ export interface PrimeFactor {
     exponent: number;
 }
 
-// LEARN [CMN006][チャレンジ課題]: コードのリファクタリング
+// LEARN [CMN005]: カバレージの評価
+// LEARN [SPN005][チャレンジ課題]: コードのリファクタリング
 /**
  * 与えられた数を素因数分解をします。
  * @param sourceNumber 分解対象の数
@@ -61,6 +62,7 @@ export function resolveGcd(a: number, b: number): number {
         __mustNotBeNegative(x);
         __mustNotBeZero(x);
     });
+    // LEARN [SPN004] `resolveGcd()`/`resolveLcm()` を実装しよう
 
     throw new Error('Not Implemented');
 }
@@ -77,6 +79,7 @@ export function resolveLcm(a: number, b: number): number {
         __mustNotBeNegative(x);
         __mustNotBeZero(x);
     });
+    // LEARN [SPN004] `resolveGcd()`/`resolveLcm()` を実装しよう
 
     throw new Error('Not Implemented');
 }

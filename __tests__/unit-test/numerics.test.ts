@@ -57,14 +57,14 @@ describe('extractPrimeFactors: 素因数分解ができることを確認する'
         expectPrimeFactors(actual).isValid().toEqual(expected);
     });
 
-    // TODO テストを追加する
+    // LEARN [SPN001] `extractPrimeFactors()` のテストケースを追加実装しよう
 });
 
 describe('extractPrimeFactors: エラーケース', () => {
     test('マイナスはエラー', () => {
         expect(() => extractPrimeFactors(-10)).toThrow();
     });
-    // TODO ほかのケースは??負の数や小数は??
+    // LEARN [SPN001] `extractPrimeFactors()` のテストケースを追加実装しよう
 });
 
 describe('resolveGcd: 最大公約数を求めることができる', () => {
@@ -73,7 +73,8 @@ describe('resolveGcd: 最大公約数を求めることができる', () => {
         const actual = resolveGcd(8, 6);
         expect(actual).toEqual(expected);
     });
-    // TODO テストケースを追加する
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // テストケースを追加する
 });
 describe('resolveGcd: エラーケース', () => {
     test('マイナスはエラー', () => {
@@ -81,7 +82,8 @@ describe('resolveGcd: エラーケース', () => {
             resolveGcd(-1, 2);
         }).toThrow();
     });
-    // TODO その他のエラーケースは？？
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // その他のエラーケースは？？
 });
 
 describe('resolveLcm: 最小公倍数を求めることができる', () => {
@@ -90,7 +92,8 @@ describe('resolveLcm: 最小公倍数を求めることができる', () => {
         const actual = resolveLcm(8, 6);
         expect(actual).toEqual(expected);
     });
-    // TODO テストケースを追加する
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // テストケースを追加する
 });
 describe('resolveLcm: エラーケース', () => {
     test('マイナスはエラー', () => {
@@ -98,5 +101,6 @@ describe('resolveLcm: エラーケース', () => {
             resolveLcm(-1, 2);
         }).toThrow();
     });
-    // TODO その他のエラーケースは？？
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // その他のエラーケースは？？
 });

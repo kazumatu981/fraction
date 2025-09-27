@@ -71,4 +71,5 @@ describe('Fraction 単体テスト', () => {
             expect(result.denominator).toBe(6);
         });
     });
+    // LEARN: [SPF001] `add`/`subtract`/`multiply`/`divide`のテストを完成させよう
 });

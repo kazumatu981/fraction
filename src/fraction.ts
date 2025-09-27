@@ -17,6 +17,7 @@ export class Fraction {
     private _isNegative: boolean = false;
     // #endregion
 
+    // LEARN [SPF004][チャレンジ課題]: 小数→分数をできるようにしよう
     /**
      * 分数を表すクラス:
      * 分子と分母を整数で表します。
@@ -146,7 +147,9 @@ export class Fraction {
      * @returns 足し合わせた結果
      */
     public add(other: Fraction): Fraction {
-        // LEARN: [CMN004]: `Fraction.add()`の単体テストと実装をしよう
+        // LEARN [CMN004]: `Fraction.add()`の単体テストと実装をしよう
+        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
+
         // (a, b) + (c, d) = (a*d + b*c, b*d)
         //  最小公倍数を使って通分したほうがいいかも？？
         throw new Error('Method not implemented.');
@@ -167,7 +170,8 @@ export class Fraction {
      * @returns 引いた結果
      */
     public subtract(other: Fraction): Fraction {
-        // TODO: 引き算を実装する
+        // LEARN [SPF002] `add`/`subtract`/`multiply`/`divide`の実装を完成させよう
+        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) - (c, d) = (a*d-b*c, b*d)
         //  最小公倍数を使って通分したほうがいいかも？？
         throw new Error('Method not implemented.');
@@ -188,7 +192,8 @@ export class Fraction {
      * @returns 掛けた結果
      */
     public multiply(other: Fraction): Fraction {
-        // TODO: 掛け算を実装する
+        // LEARN [SPF002] `add`/`subtract`/`multiply`/`divide`の実装を完成させよう
+        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) * (c, d) = (a*c, b*d)
         throw new Error('Method not implemented.');
     }
@@ -210,7 +215,8 @@ export class Fraction {
      * @throws otherが0の場合はエラーが発生する。
      */
     public divide(other: Fraction): Fraction {
-        // TODO: 割り算を実装する
+        // LEARN [SPF002] `add`/`subtract`/`multiply`/`divide`の実装を完成させよう
+        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a,b) / (c,d) = (a*d, b*c)
         // 例: (1,6) / (2,5) = (5, 12)
         throw new Error('Method not implemented.');
@@ -251,6 +257,7 @@ export class Fraction {
      */
     protected simplify(): void {
         // LEARN [CMN003] 約分を実装する
+        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) = (a/gcd(a, b), b/gcd(a, b))
         // 例: (18, 24) = (18/6 , 24/6) = (3, 4)
         throw new Error('Method not Implemented');
