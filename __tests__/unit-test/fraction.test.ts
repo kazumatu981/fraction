@@ -1,6 +1,7 @@
 import { describe, test, expect, jest } from '@jest/globals';
 import { Fraction } from '../../src/fraction';
 
+// LEARN: CMN002 Fraction.simplify() の単体テストを書こう(モッキングってなんだ？)
 /**
  * 最大公約数辞書
  */
@@ -46,10 +47,18 @@ jest.mock('../../src/numerics', () => {
 
 describe('Fraction 単体テスト', () => {
     describe('constructor', () => {
+        // LEARN: CMN002 Fraction.simplify() の単体テストを書こう(テストコードの記述)
         test('約分するケース', () => {
             const f = new Fraction(2, 4);
             expect(f.numerator).toEqual(1);
             expect(f.denominator).toEqual(2);
+        });
+
+        test('分母が0の場合例外が発生する', () => {
+            expect(() => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const f = new Fraction(1, 0);
+            }).toThrow();
         });
     });
 });

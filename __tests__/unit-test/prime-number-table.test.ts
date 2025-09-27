@@ -21,6 +21,7 @@ describe('[Unit][PrimeNumberTable]: 基本機能 素数テーブルの生成', (
     afterEach(() => {
         PrimeNumberTable.dispose();
     });
+    // LEARN [CMN001] 単体テストの理解(1)
     test('10 までの素数を列挙', () => {
         const test = 10;
         const expected = [1, 2, 3, 5, 7];
@@ -51,6 +52,7 @@ describe('[Unit][PrimeNumberTable]: 基本機能 素数テーブルの生成', (
         const actual = PrimeNumberTable.until(test);
         expect(actual).toEqual(expected);
     });
+    // LEARN [CMN001] 単体テストの理解(2)
     test('0はエラーになることを確認', () => {
         const test = 0;
         expect(() => {

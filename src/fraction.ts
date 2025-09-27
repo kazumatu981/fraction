@@ -92,7 +92,7 @@ export class Fraction {
 
     /**
      * 分子と分母を設定します。
-     * 
+     *
      * @param numerator 分子
      * @param denominator 分母
      *
@@ -107,7 +107,7 @@ export class Fraction {
      * ```
      *
      * @throws numeratorまたはdenominatorが整数でない場合、またはdenominatorが0の場合はエラーを投げる。
-     * 
+     *
      * @remarks
      * numeratorは整数でなければならない。
      * denominatorは0であってはならない。
@@ -133,7 +133,7 @@ export class Fraction {
 
     /**
      * この分数とotherを足し合わせた結果を返す
-     * 
+     *
      * @example
      * ```ts
      * const frac1 = new Fraction(1, 2);
@@ -141,7 +141,7 @@ export class Fraction {
      * const result = frac1.add(frac2);
      * console.log(result.toString()); // "5/6"
      * ```
-     * 
+     *
      * @param other 足し合わせる分数
      * @returns 足し合わせた結果
      */
@@ -154,7 +154,7 @@ export class Fraction {
 
     /**
      * この分数からotherを引いた結果を返す
-     * 
+     *
      * @example
      * ```ts
      * const frac1 = new Fraction(3, 4);
@@ -162,7 +162,7 @@ export class Fraction {
      * const result = frac1.subtract(frac2);
      * console.log(result.toString()); // "1/4"
      * ```
-     * 
+     *
      * @param other 引く分数
      * @returns 引いた結果
      */
@@ -175,7 +175,7 @@ export class Fraction {
 
     /**
      * この分数とotherを掛けた結果を返す
-     * 
+     *
      * @example
      * ```ts
      * const frac1 = new Fraction(1, 2);
@@ -183,7 +183,7 @@ export class Fraction {
      * const result = frac1.multiply(frac2);
      * console.log(result.toString()); // "1/3"
      * ```
-     * 
+     *
      * @param other 掛ける分数
      * @returns 掛けた結果
      */
@@ -195,7 +195,7 @@ export class Fraction {
 
     /**
      * 他の分数でこの分数を割った結果を返す
-     * 
+     *
      * @example
      * ```ts
      * const frac1 = new Fraction(1, 2);
@@ -203,10 +203,10 @@ export class Fraction {
      * const result = frac1.divide(frac2);
      * console.log(result.toString()); // "5/4"
      * ```
-     * 
+     *
      * @param other 割る分数
      * @returns 割った結果
-     * 
+     *
      * @throws otherが0の場合はエラーが発生する。
      */
     public divide(other: Fraction): Fraction {
@@ -218,7 +218,7 @@ export class Fraction {
 
     /**
      * 指定された分数がこの分数と等しいかどうかを判定します。
-     * 
+     *
      * @example
      * ```ts
      * const frac1 = new Fraction(1, 2);
@@ -227,7 +227,7 @@ export class Fraction {
      * const frac3 = new Fraction(3, 4);
      * console.log(frac1.equals(frac3)); // false
      * ```
-     * 
+     *
      * @param other 比較する分数
      * @returns 分数が等しい場合はtrue、それ以外の場合はfalse
      */
@@ -250,7 +250,7 @@ export class Fraction {
      * この分数を約分します。
      */
     protected simplify(): void {
-        // TODO: 約分を実装する
+        // LEARN [CMN003] 約分を実装する
         // (a, b) = (a/gcd(a, b), b/gcd(a, b))
         // 例: (18, 24) = (18/6 , 24/6) = (3, 4)
         throw new Error('Method not Implemented');
