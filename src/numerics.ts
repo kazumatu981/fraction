@@ -1,5 +1,7 @@
 import { __mustBeInteger, __mustNotBeNegative, __mustNotBeZero } from './assert';
-import { getPrimeNumberUntil } from './prime-number-table';
+import { getPrimeNumberUntil, isPrimeNumber } from './prime-number-table';
+
+export { getPrimeNumberUntil, isPrimeNumber };
 
 /**
  * 素因数分解の要素

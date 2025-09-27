@@ -11,6 +11,16 @@ export function getPrimeNumberUntil(maxValue: number): number[] {
 }
 
 /**
+ * targetが素数かどうかを判定します。
+ * @param target 判定対象の数
+ * @returns 素数であればtrue、そうでなければfalse
+ * @throws targetが負の数または整数でない場合、例外が発生する
+ */
+export function isPrimeNumber(target: number): boolean {
+    return PrimeNumberTable.isPrime(target);
+}
+
+/**
  * シングルトンのインスタンス
  */
 let __theInstance: PrimeNumberTable | null = null;
