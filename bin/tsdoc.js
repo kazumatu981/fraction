@@ -1,5 +1,5 @@
 import { generateDocumentation } from 'tsdoc-markdown';
-import { tsdocConfig } from './tsdoc.config.mjs';
+import { tsdocConfig } from '../tsdoc.config.js';
 import path from 'path';
 import { mkdir } from 'fs/promises';
 

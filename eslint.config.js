@@ -19,6 +19,13 @@ export default [
             'max-lines-per-function': ['warn', { max: 50, skipBlankLines: true, skipComments: true }],
             'max-depth': ['warn', 4],
             'max-params': ['warn', 4],
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                },
+            ],
         },
     }),
 ];

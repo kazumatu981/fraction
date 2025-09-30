@@ -1,143 +1,106 @@
-import { describe, test, expect } from '@jest/globals';
-import {
-    isNonNegativeNumeric,
-    findPrimeNumbers,
-    extractPrimeFactors,
-    resolveGcd,
-    type PrimeFactor,
-} from '../../src/numerics';
+import { describe, test, expect, jest } from '@jest/globals';
+import { extractPrimeFactors, resolveGcd, resolveLcm, type PrimeFactor } from '../../src/numerics';
 
-import { isValidPrimeFactors, expectPrimeFactors } from './numerics_test-util';
+import { expectPrimeFactors } from './numerics_test-util';
 
-describe('isNonNegativeNumeric', () => {
-    test('[true]: 1 は非負な整数', () => {
-        expect(isNonNegativeNumeric(1)).toBe(true);
-    });
-    test('[true]: 5 は非負な整数', () => {
-        expect(isNonNegativeNumeric(5)).toBe(true);
-    });
-    test('[true]: 10 は非負な整数', () => {
-        expect(isNonNegativeNumeric(10)).toBe(true);
-    });
-    test('[false]: 0 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(0)).toBe(false);
-    });
-    test('[false]: -1 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-1)).toBe(false);
-    });
-    test('[false]: -123 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-123)).toBe(false);
-    });
-    test('[false]: 0.5 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(0.5)).toBe(false);
-    });
-    test('[false]: -0.5 はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-0.5)).toBe(false);
-    });
-    test('[false][限界テスト]: NaN はFalseを返却', () => {
-        expect(isNonNegativeNumeric(NaN)).toBe(false);
-    });
-    test('[false][限界テスト]: Infinity はFalseを返却', () => {
-        expect(isNonNegativeNumeric(Infinity)).toBe(false);
-    });
-    test('[false][限界テスト]: -Infinity はFalseを返却', () => {
-        expect(isNonNegativeNumeric(-Infinity)).toBe(false);
-    });
+const PRIME_NUMBERS = [
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
+];
+
+function __mock_getPrimeNumbersUntil(maxValue: number): number[] {
+    return PRIME_NUMBERS.filter((x) => x <= maxValue);
+}
+
+jest.mock('../../src/prime-number-table', () => {
+    // モッキングしない関数はそのまま
+    const originalModule = jest.requireActual('../../src/prime-number-table') as object;
+    return {
+        __esModule: true,
+        ...originalModule,
+        /** getPrimeNumberUntilを偽物に置き換える */
+        getPrimeNumberUntil: __mock_getPrimeNumbersUntil,
+    };
 });
 
-describe('findPrimeNumbers', () => {
-    describe('素数を返却できることを確認する', () => {
-        test('10までの素数を返却する', () => {
-            expect(findPrimeNumbers(10)).toEqual([2, 3, 5, 7]);
-        });
-        // TODO テストを追加する！！！！
+describe('extractPrimeFactors: 素因数分解ができることを確認する', () => {
+    test('1を素因数分解する', () => {
+        const actual = extractPrimeFactors(1);
+
+        expectPrimeFactors(actual).isEmpty();
     });
-    describe('例外を発生させるケース', () => {
-        test('負の数を与える', () => {
-            expect(() => {
-                findPrimeNumbers(-5);
-            }).toThrow();
-        });
-        test('0を与える', () => {
-            expect(() => {
-                findPrimeNumbers(0);
-            }).toThrow();
-        });
-        test('小数を与える', () => {
-            expect(() => {
-                findPrimeNumbers(1.5);
-            }).toThrow();
-        });
-        // TODO ほかに意地悪な例外ケースはない？
+
+    test('素数2を素因数分解する', () => {
+        const expected: PrimeFactor[] = [
+            {
+                base: 2,
+                exponent: 1,
+            },
+        ];
+        const actual = extractPrimeFactors(2);
+
+        expectPrimeFactors(actual).isValid().toEqual(expected);
     });
+
+    test('6を素因数分解する', () => {
+        const expected: PrimeFactor[] = [
+            {
+                base: 2,
+                exponent: 1,
+            },
+            {
+                base: 3,
+                exponent: 1,
+            },
+        ];
+        const actual = extractPrimeFactors(6);
+
+        expectPrimeFactors(actual).isValid().toEqual(expected);
+    });
+
+    // LEARN [SPN001] `extractPrimeFactors()` のテストケースを追加実装しよう
 });
 
-describe('extractPrimeFactors', () => {
-    describe('素因数分解ができることを確認する', () => {
-        test('素数2を素因数分解する', () => {
-            const expected: PrimeFactor[] = [
-                {
-                    base: 2,
-                    exponent: 1,
-                },
-            ];
-            const actual = extractPrimeFactors(2);
-
-            expectPrimeFactors(actual).toEqual(expected);
-        });
-        test('6を素因数分解する', () => {
-            const expected: PrimeFactor[] = [
-                {
-                    base: 2,
-                    exponent: 1,
-                },
-                {
-                    base: 3,
-                    exponent: 1,
-                },
-            ];
-            const actual = extractPrimeFactors(6);
-
-            expectPrimeFactors(actual).toEqual(expected);
-        });
-        // TODO テストを追加する
-
-        test('1を素因数分解する', () => {
-            const expected: PrimeFactor[] = [
-                {
-                    base: 1,
-                    exponent: 1,
-                },
-            ];
-            const actual = extractPrimeFactors(1);
-
-            expectPrimeFactors(actual).toEqual(expected);
-        });
+describe('extractPrimeFactors: エラーケース', () => {
+    test('マイナスはエラー', () => {
+        expect(() => extractPrimeFactors(-10)).toThrow();
     });
-
-    describe('エラーケース', () => {
-        test('マイナスはエラー', () => {
-            expect(() => extractPrimeFactors(-10)).toThrow();
-        });
-        // TODO ほかのケースは??負の数や小数は??
-    });
+    // LEARN [SPN001] `extractPrimeFactors()` のテストケースを追加実装しよう
 });
 
-describe('resolveGcd', () => {
-    describe('最大公約数を求めることができる', () => {
-        test('8と6の最大公約数は2', () => {
-            const expected = 2;
-            const actual = resolveGcd(8, 6);
-            expect(actual).toEqual(expected);
-        });
-        // TODO テストケースを追加する
+describe('resolveGcd: 最大公約数を求めることができる', () => {
+    test('8と6の最大公約数は2', () => {
+        const expected = 2;
+        const actual = resolveGcd(8, 6);
+        expect(actual).toEqual(expected);
     });
-    describe('エラーケース', () => {
-        test('マイナスはエラー', () => {
-            expect(() => {
-                resolveGcd(-1, 2);
-            }).toThrow();
-        });
-        // TODO その他のエラーケースは？？
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // テストケースを追加する
+});
+describe('resolveGcd: エラーケース', () => {
+    test('マイナスはエラー', () => {
+        expect(() => {
+            resolveGcd(-1, 2);
+        }).toThrow();
     });
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // その他のエラーケースは？？
+});
+
+describe('resolveLcm: 最小公倍数を求めることができる', () => {
+    test('8と6の最小公倍数は24', () => {
+        const expected = 24;
+        const actual = resolveLcm(8, 6);
+        expect(actual).toEqual(expected);
+    });
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // テストケースを追加する
+});
+describe('resolveLcm: エラーケース', () => {
+    test('マイナスはエラー', () => {
+        expect(() => {
+            resolveLcm(-1, 2);
+        }).toThrow();
+    });
+    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
+    // その他のエラーケースは？？
 });

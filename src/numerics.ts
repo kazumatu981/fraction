@@ -1,29 +1,24 @@
-/**
- * 正の整数かどうかを返却します。
- * @param sourceNumber 対象の数
- * @returns 正の整数かどうかを表すブール値
- */
-export function isNonNegativeNumeric(sourceNumber: number): boolean {
-    return Number.isInteger(sourceNumber) && sourceNumber > 0;
-}
+import { __mustBeInteger, __mustNotBeNegative, __mustNotBeZero } from './assert';
+import { getPrimeNumberUntil, isPrimeNumber } from './prime-number-table';
 
-/**
- * maxNumberで指定した数までの素数を求める
- * @param maxNumber 素数を求める最大値
- * @returns 発見した素数
- */
-export function findPrimeNumbers(maxNumber: number): number[] {
-    throw new Error('Not Implemented.');
-}
+export { getPrimeNumberUntil, isPrimeNumber };
 
 /**
  * 素因数分解の要素
  */
 export interface PrimeFactor {
-    base: number; // 素因数（素数）
-    exponent: number; // 指数（その素数が何回掛けられているか）
+    /**
+     * 素因数 (素数)
+     */
+    base: number;
+    /**
+     * 指数 (その素数が何回掛けられているか)
+     */
+    exponent: number;
 }
 
+// LEARN [CMN005]: カバレージの評価
+// LEARN [SPN005][チャレンジ課題]: コードのリファクタリング
 /**
  * 与えられた数を素因数分解をします。
  * @param sourceNumber 分解対象の数
@@ -31,7 +26,30 @@ export interface PrimeFactor {
  * @throws 負の数であった場合
  */
 export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
-    throw new Error('Not Implemented');
+    __mustBeInteger(sourceNumber);
+    __mustNotBeNegative(sourceNumber);
+    __mustNotBeZero(sourceNumber);
+
+    const primes = getPrimeNumberUntil(sourceNumber);
+    const result: PrimeFactor[] = [];
+    let remainder = sourceNumber;
+    for (const prime of primes) {
+        if (prime > sourceNumber) {
+            break;
+        }
+        let exponent = 0;
+        while (remainder % prime === 0) {
+            exponent++;
+            remainder = remainder / prime;
+        }
+        if (exponent > 0) {
+            result.push({ base: prime, exponent: exponent });
+        }
+        if (remainder === 1) {
+            break;
+        }
+    }
+    return result;
 }
 
 /**
@@ -41,5 +59,29 @@ export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
  * @returns 2つの整数a, bの最大公約数
  */
 export function resolveGcd(a: number, b: number): number {
+    [a, b].forEach((x) => {
+        __mustBeInteger(x);
+        __mustNotBeNegative(x);
+        __mustNotBeZero(x);
+    });
+    // LEARN [SPN004] `resolveGcd()`/`resolveLcm()` を実装しよう
+
+    throw new Error('Not Implemented');
+}
+
+/**
+ * 2つの整数a, bの最小公倍数
+ * @param a 1つ目の整数
+ * @param b 2つ目の整数
+ * @returns 2つの整数a, bの最小公倍数
+ */
+export function resolveLcm(a: number, b: number): number {
+    [a, b].forEach((x) => {
+        __mustBeInteger(x);
+        __mustNotBeNegative(x);
+        __mustNotBeZero(x);
+    });
+    // LEARN [SPN004] `resolveGcd()`/`resolveLcm()` を実装しよう
+
     throw new Error('Not Implemented');
 }

@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild';
-import { buildConfig } from './esbuild.config.mjs';
+import { buildConfig } from '../build.config.js';
 
 const mode = process.argv[2];
 console.log(`bundle TypeScript sources: ${mode} mode`);
