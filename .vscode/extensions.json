@@ -2,6 +2,11 @@
     "recommendations": [
         "esbenp.prettier-vscode",
         "orta.vscode-jest",
-        "gruntfuggly.todo-tree"
+        "gruntfuggly.todo-tree",
+        "dbaeumer.vscode-eslint",
+        "kisstkondoros.vscode-codemetrics",
+        "streetsidesoftware.code-spell-checker",
+        "hediet.vscode-drawio",
+        "vstirbu.vscode-mermaid-preview"
     ]
 }

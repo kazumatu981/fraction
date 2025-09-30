@@ -2,12 +2,16 @@
   "name": "fraction",
   "version": "1.0.0",
   "description": "分数を表すクラスライブラリ(演習用)",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "test": "jest",
-    "build": "tsc  --project tsconfig.json",
-    "watch": "tsc -w  --project tsconfig.json"
+    "build:check": "tsc",
+    "build:format": "prettier src --write",
+    "build:release": "node bin/build.js release",
+    "build:release_debug": "node bin/build.js release_debug",
+    "build:develop": "node bin/build.js develop",
+    "build:docs": "node bin/tsdoc.js",
+    "build:clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
@@ -20,9 +24,17 @@
   },
   "homepage": "https://github.com/kazumatu981/fraction#readme",
   "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@jest/globals": "latest",
     "@types/jest": "latest",
+    "esbuild": "latest",
+    "eslint": "^9.34.0",
     "jest": "latest",
+    "prettier": "latest",
+    "rimraf": "latest",
     "ts-jest": "latest",
-    "typescript": "latest"
+    "tsdoc-markdown": "^1.4.1",
+    "typescript": "latest",
+    "typescript-eslint": "^8.40.0"
   }
 }

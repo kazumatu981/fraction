@@ -1,4 +1,15 @@
 {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "markdown-pdf.mermaidServer": "https://unpkg.com/mermaid/dist/mermaid.min.js",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]",
+        "LEARN"
+    ]
 }
