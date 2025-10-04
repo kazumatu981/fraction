@@ -256,10 +256,8 @@ export class Fraction {
      * この分数を約分します。
      */
     protected simplify(): void {
-        // LEARN [CMN003] 約分を実装する
-        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
-        // (a, b) = (a/gcd(a, b), b/gcd(a, b))
-        // 例: (18, 24) = (18/6 , 24/6) = (3, 4)
-        throw new Error('Method not Implemented');
+        const gcd = resolveGcd(this.numerator, this.denominator);
+        this._numerator = this.numerator / gcd;
+        this._denominator = this.denominator / gcd;
     }
 }
