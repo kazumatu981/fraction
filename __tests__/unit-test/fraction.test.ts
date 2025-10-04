@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { describe, test, expect, jest } from '@jest/globals';
 import { Fraction } from '../../src/fraction';
 
@@ -6,7 +7,10 @@ import { Fraction } from '../../src/fraction';
  * 最大公約数辞書
  */
 const gcdDictionary: Record<string, number> = {
+    '1gcd2': 1,
     '2gcd4': 2,
+    '5gcd6': 1,
+    '5gcd7': 1,
 };
 
 const lcmDictionary: Record<string, number> = {
@@ -48,6 +52,34 @@ jest.mock('../../src/numerics', () => {
 describe('Fraction 単体テスト', () => {
     describe('constructor', () => {
         // LEARN: CMN002 Fraction.simplify() の単体テストを書こう(テストコードの記述)
+        test('約分しないケース 1/2', () => {
+            const f = new Fraction(1, 2);
+            expect(f.numerator).toEqual(1);
+            expect(f.denominator).toEqual(2);
+        });
+        test('約分しないケース 5/7', () => {
+            const f = new Fraction(5, 7);
+            expect(f.numerator).toEqual(5);
+            expect(f.denominator).toEqual(7);
+        });
+        test('分子がマイナス -5/6', () => {
+            const f = new Fraction(-5, 6);
+            expect(f.isNegative).toBe(true);
+            expect(f.numerator).toEqual(5);
+            expect(f.denominator).toEqual(6);
+        });
+        test('分母がマイナス 5/-6', () => {
+            const f = new Fraction(5, -6);
+            expect(f.isNegative).toBe(true);
+            expect(f.numerator).toEqual(5);
+            expect(f.denominator).toEqual(6);
+        });
+        test('分子・分母がマイナス -5/-6', () => {
+            const f = new Fraction(-5, -6);
+            expect(f.isNegative).toBe(false);
+            expect(f.numerator).toEqual(5);
+            expect(f.denominator).toEqual(6);
+        });
         test('約分するケース', () => {
             const f = new Fraction(2, 4);
             expect(f.numerator).toEqual(1);
@@ -58,6 +90,18 @@ describe('Fraction 単体テスト', () => {
             expect(() => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const f = new Fraction(1, 0);
+            }).toThrow();
+        });
+        test('分子が小数点例外が発生する', () => {
+            expect(() => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const f = new Fraction(1.23, 1);
+            }).toThrow();
+        });
+        test('分母が小数点例外が発生する', () => {
+            expect(() => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const f = new Fraction(1, 1.34);
             }).toThrow();
         });
     });
