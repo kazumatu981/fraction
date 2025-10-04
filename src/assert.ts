@@ -37,3 +37,22 @@ export function __mustNotBeZero(test: number, appendix?: string) {
         throw new Error(message);
     }
 }
+
+/**
+ * 指定されたRecordに指定されたキーが存在するかどうかを検査し、存在しなければ例外をスローする。
+ * @param record 検索対象レコード
+ * @param key 検索キー
+ * @param appendix 追加メッセージ
+ */
+export function __mustBeDefinedOnRecord<TType>(
+    record: Record<string, TType>,
+    key: string,
+    appendix?: string
+) {
+    if (record[key] === undefined) {
+        const message = appendix
+            ? `MUST be defined on Record: ${appendix}`
+            : 'MUST be defined on Record';
+        throw new Error(message);
+    }
+}
