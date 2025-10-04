@@ -74,6 +74,12 @@ describe('Fraction 単体テスト', () => {
             expect(f.numerator).toEqual(5);
             expect(f.denominator).toEqual(6);
         });
+        test('分子が0なら分母は1が設定される', () => {
+            const f = new Fraction(0, 7);
+            expect(f.isNegative).toBe(false);
+            expect(f.numerator).toEqual(0);
+            expect(f.denominator).toEqual(1);
+        });
         test('分子・分母がマイナス -5/-6', () => {
             const f = new Fraction(-5, -6);
             expect(f.isNegative).toBe(false);
@@ -113,6 +119,29 @@ describe('Fraction 単体テスト', () => {
             const result = f1.add(f2);
             expect(result.numerator).toBe(5);
             expect(result.denominator).toBe(6);
+        });
+
+        test('1/2 + - 1/3 = 1/6', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(-1, 3);
+            const result = f1.add(f2);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(6);
+        });
+
+        test('1/4 + 1/6 = 5/12', () => {
+            const f1 = new Fraction(1, 4);
+            const f2 = new Fraction(1, 6);
+            const result = f1.add(f2);
+            expect(result.numerator).toBe(5);
+            expect(result.denominator).toBe(12);
+        });
+        test('1/8 + 1/6 = 5/12', () => {
+            const f1 = new Fraction(1, 8);
+            const f2 = new Fraction(1, 6);
+            const result = f1.add(f2);
+            expect(result.numerator).toBe(7);
+            expect(result.denominator).toBe(24);
         });
     });
     // LEARN: [SPF001] `add`/`subtract`/`multiply`/`divide`のテストを完成させよう
