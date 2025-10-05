@@ -9,13 +9,24 @@ import { __mustBeDefinedOnRecord } from '../../src/assert';
  */
 const gcdDictionary: Record<string, number> = {
     '1gcd2': 1,
+    '1gcd3': 1,
+    '1gcd4': 1,
+    '1gcd6': 1,
+    '1gcd8': 1,
+    '1gcd12': 1,
+    '2gcd3': 1,
     '2gcd4': 2,
     '5gcd6': 1,
     '5gcd7': 1,
+    '5gcd12': 1,
+    '7gcd24': 1,
 };
 
 const lcmDictionary: Record<string, number> = {
+    '2lcm3': 6,
     '2lcm4': 4,
+    '4lcm6': 12,
+    '8lcm6': 24,
 };
 
 /**

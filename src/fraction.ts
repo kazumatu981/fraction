@@ -151,8 +151,13 @@ export class Fraction {
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
 
         // (a, b) + (c, d) = (a*d + b*c, b*d)
-        //  最小公倍数を使って通分したほうがいいかも？？
-        throw new Error('Method not implemented.');
+
+        const lcm = resolveLcm(this.denominator, other.denominator);
+        const a = (lcm / this.denominator) * this.numerator * (this.isNegative ? -1 : 1);
+        const b = (lcm / other.denominator) * other.numerator * (other.isNegative ? -1 : 1);
+        const numerator = a + b;
+        const denominator = lcm;
+        return new Fraction(numerator, denominator);
     }
 
     /**
