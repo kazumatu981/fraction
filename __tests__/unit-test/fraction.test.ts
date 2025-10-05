@@ -91,6 +91,7 @@ describe('Fraction 単体テスト', () => {
         });
         test('約分するケース', () => {
             const f = new Fraction(2, 4);
+            expect(f.isNegative).toBe(false);
             expect(f.numerator).toEqual(1);
             expect(f.denominator).toEqual(2);
         });
@@ -120,6 +121,7 @@ describe('Fraction 単体テスト', () => {
             const f1 = new Fraction(1, 2);
             const f2 = new Fraction(1, 3);
             const result = f1.add(f2);
+            expect(f1.isNegative).toBe(false);
             expect(result.numerator).toBe(5);
             expect(result.denominator).toBe(6);
         });
@@ -128,6 +130,7 @@ describe('Fraction 単体テスト', () => {
             const f1 = new Fraction(1, 2);
             const f2 = new Fraction(-1, 3);
             const result = f1.add(f2);
+            expect(f1.isNegative).toBe(false);
             expect(result.numerator).toBe(1);
             expect(result.denominator).toBe(6);
         });
@@ -136,13 +139,52 @@ describe('Fraction 単体テスト', () => {
             const f1 = new Fraction(1, 4);
             const f2 = new Fraction(1, 6);
             const result = f1.add(f2);
+            expect(f1.isNegative).toBe(false);
             expect(result.numerator).toBe(5);
             expect(result.denominator).toBe(12);
         });
+
+        test('1/4 + (-1)/6 = 5/12', () => {
+            const f1 = new Fraction(1, 4);
+            const f2 = new Fraction(-1, 6);
+            const result = f1.add(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(12);
+        });
+
+        test('1/4 + -1/(-6) = 5/12', () => {
+            const f1 = new Fraction(1, 4);
+            const f2 = new Fraction(1, -6);
+            const result = f1.add(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(12);
+        });
+
+        test('(-1)/4 + 1/6 = 5/12', () => {
+            const f1 = new Fraction(-1, 4);
+            const f2 = new Fraction(1, 6);
+            const result = f1.add(f2);
+            expect(f1.isNegative).toBe(true);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(12);
+        });
+
+        test('1/(-4) + -1/6 = 5/12', () => {
+            const f1 = new Fraction(1, -4);
+            const f2 = new Fraction(1, 6);
+            const result = f1.add(f2);
+            expect(f1.isNegative).toBe(true);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(12);
+        });
+
         test('1/8 + 1/6 = 5/12', () => {
             const f1 = new Fraction(1, 8);
             const f2 = new Fraction(1, 6);
             const result = f1.add(f2);
+            expect(f1.isNegative).toBe(false);
             expect(result.numerator).toBe(7);
             expect(result.denominator).toBe(24);
         });
