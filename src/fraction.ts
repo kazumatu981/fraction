@@ -147,7 +147,6 @@ export class Fraction {
      * @returns 足し合わせた結果
      */
     public add(other: Fraction): Fraction {
-        // LEARN [CMN004]: `Fraction.add()`の単体テストと実装をしよう
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
 
         // (a, b) + (c, d) = (a*d + b*c, b*d)

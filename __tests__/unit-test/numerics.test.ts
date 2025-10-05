@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { describe, test, expect, jest } from '@jest/globals';
 import { extractPrimeFactors, resolveGcd, resolveLcm, type PrimeFactor } from '../../src/numerics';
 
@@ -57,20 +58,62 @@ describe('extractPrimeFactors: 素因数分解ができることを確認する'
         expectPrimeFactors(actual).isValid().toEqual(expected);
     });
 
-    // LEARN [SPN001] `extractPrimeFactors()` のテストケースを追加実装しよう
+    test('素数8を素因数分解する', () => {
+        const expected: PrimeFactor[] = [
+            {
+                base: 2,
+                exponent: 3,
+            },
+        ];
+        const actual = extractPrimeFactors(8);
+
+        expectPrimeFactors(actual).isValid().toEqual(expected);
+    });
+
+    test('24を素因数分解する', () => {
+        const expected: PrimeFactor[] = [
+            {
+                base: 2,
+                exponent: 3,
+            },
+            {
+                base: 3,
+                exponent: 1,
+            },
+        ];
+        const actual = extractPrimeFactors(24);
+
+        expectPrimeFactors(actual).isValid().toEqual(expected);
+    });
+    test('1を素因数分解する', () => {
+        const expected: PrimeFactor[] = [];
+        const actual = extractPrimeFactors(1);
+
+        expectPrimeFactors(actual).isValid().toEqual(expected);
+    });
 });
 
 describe('extractPrimeFactors: エラーケース', () => {
     test('マイナスはエラー', () => {
         expect(() => extractPrimeFactors(-10)).toThrow();
     });
-    // LEARN [SPN001] `extractPrimeFactors()` のテストケースを追加実装しよう
+    test('0はエラー', () => {
+        expect(() => extractPrimeFactors(0)).toThrow();
+    });
+    test('小数はエラー', () => {
+        expect(() => extractPrimeFactors(0.5)).toThrow();
+    });
 });
 
 describe('resolveGcd: 最大公約数を求めることができる', () => {
     test('8と6の最大公約数は2', () => {
         const expected = 2;
         const actual = resolveGcd(8, 6);
+        expect(actual).toEqual(expected);
+    });
+    test('3と5の最大公約数は1', () => {
+        const expected = 1;
+        const actual = resolveGcd(3, 5);
         expect(actual).toEqual(expected);
     });
     // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
@@ -82,8 +125,31 @@ describe('resolveGcd: エラーケース', () => {
             resolveGcd(-1, 2);
         }).toThrow();
     });
-    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
-    // その他のエラーケースは？？
+    test('マイナスはエラー', () => {
+        expect(() => {
+            resolveGcd(1, -2);
+        }).toThrow();
+    });
+    test('0はエラー', () => {
+        expect(() => {
+            resolveGcd(0, 2);
+        }).toThrow();
+    });
+    test('0はエラー', () => {
+        expect(() => {
+            resolveGcd(1, 0);
+        }).toThrow();
+    });
+    test('小数はエラー', () => {
+        expect(() => {
+            resolveGcd(1, 0.5);
+        }).toThrow();
+    });
+    test('小数はエラー', () => {
+        expect(() => {
+            resolveGcd(1.2, 1);
+        }).toThrow();
+    });
 });
 
 describe('resolveLcm: 最小公倍数を求めることができる', () => {

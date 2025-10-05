@@ -3,7 +3,6 @@ import { describe, test, expect, jest } from '@jest/globals';
 import { Fraction } from '../../src/fraction';
 import { __mustBeDefinedOnRecord } from '../../src/assert';
 
-// LEARN: CMN002 Fraction.simplify() の単体テストを書こう(モッキングってなんだ？)
 /**
  * 最大公約数辞書
  */
@@ -65,7 +64,6 @@ jest.mock('../../src/numerics', () => {
 
 describe('Fraction 単体テスト', () => {
     describe('constructor', () => {
-        // LEARN: CMN002 Fraction.simplify() の単体テストを書こう(テストコードの記述)
         test('約分しないケース 1/2', () => {
             const f = new Fraction(1, 2);
             expect(f.numerator).toEqual(1);
@@ -126,7 +124,6 @@ describe('Fraction 単体テスト', () => {
             }).toThrow();
         });
     });
-    // LEARN: [CMN004]: `Fraction.add()`の単体テストと実装をしよう
     describe('add', () => {
         test('1/2 + 1/3 = 5/6', () => {
             const f1 = new Fraction(1, 2);

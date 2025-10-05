@@ -17,7 +17,6 @@ export interface PrimeFactor {
     exponent: number;
 }
 
-// LEARN [CMN005]: カバレージの評価
 // LEARN [SPN005][チャレンジ課題]: コードのリファクタリング
 /**
  * 与えられた数を素因数分解をします。
@@ -65,8 +64,27 @@ export function resolveGcd(a: number, b: number): number {
         __mustNotBeZero(x);
     });
     // LEARN [SPN004] `resolveGcd()`/`resolveLcm()` を実装しよう
+    const extractedA = extractPrimeFactors(a);
+    const extractedB = extractPrimeFactors(b);
+    const commonFactors: PrimeFactor[] = [];
 
-    throw new Error('Not Implemented');
+    for (const factorA of extractedA) {
+        const factorB = extractedB.find((f) => f.base === factorA.base);
+        if (factorB) {
+            commonFactors.push({
+                base: factorA.base,
+                exponent: Math.min(factorA.exponent, factorB.exponent),
+            });
+        }
+    }
+    let gcd = 1;
+    for (const factor of commonFactors) {
+        for (let i = 0; i < factor.exponent; i++) {
+            gcd *= factor.base;
+        }
+    }
+
+    return gcd;
 }
 
 /**
