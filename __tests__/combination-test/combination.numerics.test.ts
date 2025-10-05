@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+
 import { expect, test } from '@jest/globals';
 import {
     isPrimeNumber,
