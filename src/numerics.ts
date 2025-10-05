@@ -63,7 +63,6 @@ export function resolveGcd(a: number, b: number): number {
         __mustNotBeNegative(x);
         __mustNotBeZero(x);
     });
-    // LEARN [SPN004] `resolveGcd()`/`resolveLcm()` を実装しよう
     const extractedA = extractPrimeFactors(a);
     const extractedB = extractPrimeFactors(b);
     const commonFactors: PrimeFactor[] = [];
@@ -99,7 +98,6 @@ export function resolveLcm(a: number, b: number): number {
         __mustNotBeNegative(x);
         __mustNotBeZero(x);
     });
-    // LEARN [SPN004] `resolveGcd()`/`resolveLcm()` を実装しよう
-
-    throw new Error('Not Implemented');
+    const gcd = resolveGcd(a, b);
+    return (a * b) / gcd;
 }

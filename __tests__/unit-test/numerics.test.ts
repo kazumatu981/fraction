@@ -158,8 +158,16 @@ describe('resolveLcm: 最小公倍数を求めることができる', () => {
         const actual = resolveLcm(8, 6);
         expect(actual).toEqual(expected);
     });
-    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
-    // テストケースを追加する
+    test('8と2の最小公倍数は2', () => {
+        const expected = 8;
+        const actual = resolveLcm(8, 2);
+        expect(actual).toEqual(expected);
+    });
+    test('20と21の最小公倍数は420', () => {
+        const expected = 420;
+        const actual = resolveLcm(20, 21);
+        expect(actual).toEqual(expected);
+    });
 });
 describe('resolveLcm: エラーケース', () => {
     test('マイナスはエラー', () => {
@@ -167,6 +175,29 @@ describe('resolveLcm: エラーケース', () => {
             resolveLcm(-1, 2);
         }).toThrow();
     });
-    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
-    // その他のエラーケースは？？
+    test('マイナスはエラー', () => {
+        expect(() => {
+            resolveLcm(1, -2);
+        }).toThrow();
+    });
+    test('0はエラー', () => {
+        expect(() => {
+            resolveLcm(0, 2);
+        }).toThrow();
+    });
+    test('0はエラー', () => {
+        expect(() => {
+            resolveLcm(1, 0);
+        }).toThrow();
+    });
+    test('小数はエラー', () => {
+        expect(() => {
+            resolveLcm(1, 0.5);
+        }).toThrow();
+    });
+    test('小数はエラー', () => {
+        expect(() => {
+            resolveLcm(1.2, 1);
+        }).toThrow();
+    });
 });
