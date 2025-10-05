@@ -174,11 +174,14 @@ export class Fraction {
      * @returns 引いた結果
      */
     public subtract(other: Fraction): Fraction {
-        // LEARN [SPF002] `add`/`subtract`/`multiply`/`divide`の実装を完成させよう
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) - (c, d) = (a*d-b*c, b*d)
-        //  最小公倍数を使って通分したほうがいいかも？？
-        throw new Error('Method not implemented.');
+        const lcm = resolveLcm(this.denominator, other.denominator);
+        const a = (lcm / this.denominator) * this.numerator * (this.isNegative ? -1 : 1);
+        const b = (lcm / other.denominator) * other.numerator * (other.isNegative ? -1 : 1);
+        const numerator = a - b;
+        const denominator = lcm;
+        return new Fraction(numerator, denominator);
     }
 
     /**
@@ -197,9 +200,11 @@ export class Fraction {
      */
     public multiply(other: Fraction): Fraction {
         // LEARN [SPF002] `add`/`subtract`/`multiply`/`divide`の実装を完成させよう
-        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) * (c, d) = (a*c, b*d)
-        throw new Error('Method not implemented.');
+        const numerator =
+            this.numerator * other.numerator * (this.isNegative !== other.isNegative ? -1 : 1);
+        const denominator = this.denominator * other.denominator;
+        return new Fraction(numerator, denominator);
     }
 
     /**
@@ -219,11 +224,14 @@ export class Fraction {
      * @throws otherが0の場合はエラーが発生する。
      */
     public divide(other: Fraction): Fraction {
-        // LEARN [SPF002] `add`/`subtract`/`multiply`/`divide`の実装を完成させよう
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a,b) / (c,d) = (a*d, b*c)
-        // 例: (1,6) / (2,5) = (5, 12)
-        throw new Error('Method not implemented.');
+        __mustNotBeZero(other.numerator, '0で割ることはできません');
+
+        const numerator =
+            this.numerator * other.denominator * (this.isNegative !== other.isNegative ? -1 : 1);
+        const denominator = this.denominator * other.numerator;
+        return new Fraction(numerator, denominator);
     }
 
     /**

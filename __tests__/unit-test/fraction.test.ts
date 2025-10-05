@@ -197,5 +197,70 @@ describe('Fraction 単体テスト', () => {
             expect(result.denominator).toBe(24);
         });
     });
-    // LEARN: [SPF001] `add`/`subtract`/`multiply`/`divide`のテストを完成させよう
+    describe('subtract', () => {
+        test('1/2 - 1/3 = 1/6', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(1, 3);
+            const result = f1.subtract(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(6);
+        });
+        test('1/2 - -1/3 = 5/6', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(-1, 3);
+            const result = f1.subtract(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.numerator).toBe(5);
+            expect(result.denominator).toBe(6);
+        });
+    });
+    describe('multiply', () => {
+        test('1/2 * 1/3 = 1/6', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(1, 3);
+            const result = f1.multiply(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(6);
+        });
+        test('1/2 * -1/3 = -1/6', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(-1, 3);
+            const result = f1.multiply(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.isNegative).toBe(true);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(6);
+        });
+    });
+    describe('divide', () => {
+        test('1/2 ÷ 1/3 = 3/2', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(1, 3);
+            const result = f1.divide(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.numerator).toBe(3);
+            expect(result.denominator).toBe(2);
+        });
+        test('1/2 ÷ -1/3 = -3/2', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(-1, 3);
+            const result = f1.divide(f2);
+            expect(f1.isNegative).toBe(false);
+            expect(result.isNegative).toBe(true);
+            expect(result.numerator).toBe(3);
+            expect(result.denominator).toBe(2);
+        });
+    });
+
+    describe('演算の例外処理', () => {
+        test('0で割ると例外が発生する', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = new Fraction(0, 3);
+            expect(() => {
+                f1.divide(f2);
+            }).toThrow();
+        });
+    });
 });
