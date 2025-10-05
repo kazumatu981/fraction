@@ -15,6 +15,7 @@ const gcdDictionary: Record<string, number> = {
     '1gcd12': 1,
     '2gcd3': 1,
     '2gcd4': 2,
+    '3gcd2': 1,
     '5gcd6': 1,
     '5gcd7': 1,
     '5gcd12': 1,
