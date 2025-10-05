@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { describe, test, expect, jest } from '@jest/globals';
 import { Fraction } from '../../src/fraction';
+import { __mustBeDefinedOnRecord } from '../../src/assert';
 
 // LEARN: CMN002 Fraction.simplify() の単体テストを書こう(モッキングってなんだ？)
 /**
@@ -24,6 +25,7 @@ const lcmDictionary: Record<string, number> = {
  * @returns 最大公約数
  */
 function __mock_ResolveGcd(a: number, b: number): number {
+    __mustBeDefinedOnRecord(gcdDictionary, `${a}gcd${b}`, `${a}と${b}の最大公約数が未定義です`);
     return gcdDictionary[`${a}gcd${b}`];
 }
 
@@ -33,6 +35,7 @@ function __mock_ResolveGcd(a: number, b: number): number {
  * @returns 最小公倍数
  */
 function __mock_ResolveLcm(a: number, b: number): number {
+    __mustBeDefinedOnRecord(lcmDictionary, `${a}lcm${b}`, `${a}と${b}の最小公倍数が未定義です`);
     return lcmDictionary[`${a}lcm${b}`];
 }
 
