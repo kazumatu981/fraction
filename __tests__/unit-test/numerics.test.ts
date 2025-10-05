@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { describe, test, expect, jest } from '@jest/globals';
 import { extractPrimeFactors, resolveGcd, resolveLcm, type PrimeFactor } from '../../src/numerics';
 
