@@ -148,7 +148,6 @@ export class Fraction {
      */
     public add(other: Fraction): Fraction {
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
-
         // (a, b) + (c, d) = (a*d + b*c, b*d)
 
         const lcm = resolveLcm(this.denominator, other.denominator);
@@ -199,7 +198,7 @@ export class Fraction {
      * @returns 掛けた結果
      */
     public multiply(other: Fraction): Fraction {
-        // LEARN [SPF002] `add`/`subtract`/`multiply`/`divide`の実装を完成させよう
+        // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) * (c, d) = (a*c, b*d)
         const numerator =
             this.numerator * other.numerator * (this.isNegative !== other.isNegative ? -1 : 1);

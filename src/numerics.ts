@@ -33,9 +33,6 @@ export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
     const result: PrimeFactor[] = [];
     let remainder = sourceNumber;
     for (const prime of primes) {
-        if (prime > sourceNumber) {
-            break;
-        }
         let exponent = 0;
         while (remainder % prime === 0) {
             exponent++;

@@ -116,8 +116,16 @@ describe('resolveGcd: 最大公約数を求めることができる', () => {
         const actual = resolveGcd(3, 5);
         expect(actual).toEqual(expected);
     });
-    // LEARN [SPN002] `resolveGcd()`/`resolveLcm()` のテストを完成させよう
-    // テストケースを追加する
+    test('20と21の最大公約数は1', () => {
+        const expected = 1;
+        const actual = resolveGcd(20, 21);
+        expect(actual).toEqual(expected);
+    });
+    test('24と36の最大公約数は12', () => {
+        const expected = 12;
+        const actual = resolveGcd(24, 36);
+        expect(actual).toEqual(expected);
+    });
 });
 describe('resolveGcd: エラーケース', () => {
     test('マイナスはエラー', () => {
