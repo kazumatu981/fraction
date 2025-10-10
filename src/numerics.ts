@@ -17,7 +17,15 @@ export interface PrimeFactor {
     exponent: number;
 }
 
-// LEARN [SPN005][チャレンジ課題]: コードのリファクタリング
+function _findOrderOfPrime(sourceNumber: number, prime: number): number {
+    let exponent = 0;
+    let remainder = sourceNumber;
+    while (remainder % prime === 0) {
+        exponent++;
+        remainder = remainder / prime;
+    }
+    return exponent;
+}
 /**
  * 与えられた数を素因数分解をします。
  * @param sourceNumber 分解対象の数
@@ -29,22 +37,14 @@ export function extractPrimeFactors(sourceNumber: number): PrimeFactor[] {
     __mustNotBeNegative(sourceNumber);
     __mustNotBeZero(sourceNumber);
 
-    const primes = getPrimeNumberUntil(sourceNumber);
-    const result: PrimeFactor[] = [];
-    let remainder = sourceNumber;
-    for (const prime of primes) {
-        let exponent = 0;
-        while (remainder % prime === 0) {
-            exponent++;
-            remainder = remainder / prime;
-        }
-        if (exponent > 0) {
-            result.push({ base: prime, exponent: exponent });
-        }
-        if (remainder === 1) {
-            break;
-        }
-    }
+    const result = getPrimeNumberUntil(sourceNumber)
+        .map((prime) => {
+            return {
+                base: prime,
+                exponent: _findOrderOfPrime(sourceNumber, prime),
+            };
+        })
+        .filter((element) => element.exponent > 0);
     return result;
 }
 
