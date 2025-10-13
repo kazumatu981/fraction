@@ -185,7 +185,7 @@ function _generateTable(maxValue: number): PrimeTableItem[] {
     // 0は素数ではない
     baseTable[0].isPrime = false;
     // 1は素数とする
-    baseTable[1].isPrime = true;
+    baseTable[1].isPrime = false;
 
     //エラトステネスのふるい本体
     for (let i = 2; i <= maxValue; i++) {
