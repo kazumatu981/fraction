@@ -7,22 +7,27 @@ import { __mustBeDefinedOnRecord } from '../../src/assert';
  * 最大公約数辞書
  */
 const gcdDictionary: Record<string, number> = {
+    '1gcd1': 1,
     '1gcd2': 1,
     '1gcd3': 1,
     '1gcd4': 1,
     '1gcd6': 1,
     '1gcd8': 1,
     '1gcd12': 1,
+    '2gcd1': 1,
     '2gcd3': 1,
     '2gcd4': 2,
     '3gcd2': 1,
     '5gcd6': 1,
     '5gcd7': 1,
     '5gcd12': 1,
+    '5gcd20': 5,
     '7gcd24': 1,
+    '100gcd25': 25,
 };
 
 const lcmDictionary: Record<string, number> = {
+    '2lcm1': 2,
     '2lcm3': 6,
     '2lcm4': 4,
     '4lcm6': 12,
@@ -105,23 +110,29 @@ describe('Fraction 単体テスト', () => {
             expect(f.numerator).toEqual(1);
             expect(f.denominator).toEqual(2);
         });
+        test('分子が小数のケース', () => {
+            const f = new Fraction(0.5, 2);
+            expect(f.isNegative).toBe(false);
+            expect(f.numerator).toEqual(1);
+            expect(f.denominator).toEqual(4);
+        });
+        test('分母が小数のケース', () => {
+            const f = new Fraction(1, 0.25);
+            expect(f.isNegative).toBe(false);
+            expect(f.numerator).toEqual(4);
+            expect(f.denominator).toEqual(1);
+        });
+        test('分母省略のケース', () => {
+            const f = new Fraction(2);
+            expect(f.isNegative).toBe(false);
+            expect(f.numerator).toBe(2);
+            expect(f.denominator).toBe(1);
+        });
 
         test('分母が0の場合例外が発生する', () => {
             expect(() => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const f = new Fraction(1, 0);
-            }).toThrow();
-        });
-        test('分子が小数点例外が発生する', () => {
-            expect(() => {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const f = new Fraction(1.23, 1);
-            }).toThrow();
-        });
-        test('分母が小数点例外が発生する', () => {
-            expect(() => {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const f = new Fraction(1, 1.34);
             }).toThrow();
         });
     });
@@ -203,7 +214,7 @@ describe('Fraction 単体テスト', () => {
             const f1 = new Fraction(1, 2);
             const f2 = new Fraction(1, 3);
             const result = f1.subtract(f2);
-            expect(f1.isNegative).toBe(false);
+            expect(result.isNegative).toBe(false);
             expect(result.numerator).toBe(1);
             expect(result.denominator).toBe(6);
         });
@@ -211,9 +222,17 @@ describe('Fraction 単体テスト', () => {
             const f1 = new Fraction(1, 2);
             const f2 = new Fraction(-1, 3);
             const result = f1.subtract(f2);
-            expect(f1.isNegative).toBe(false);
+            expect(result.isNegative).toBe(false);
             expect(result.numerator).toBe(5);
             expect(result.denominator).toBe(6);
+        });
+        test('1/2 - 1 = -1/2', () => {
+            const f1 = new Fraction(1, 2);
+            const f2 = 1;
+            const result = f1.subtract(f2);
+            expect(result.isNegative).toBe(true);
+            expect(result.numerator).toBe(1);
+            expect(result.denominator).toBe(2);
         });
     });
     describe('multiply', () => {

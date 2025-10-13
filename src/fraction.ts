@@ -1,6 +1,21 @@
 import { __mustBeInteger, __mustNotBeNegative, __mustNotBeZero } from './assert';
 import { resolveGcd, resolveLcm } from './numerics';
 
+/**
+ * 小数点以下の桁数を取得する
+ *
+ * @param value 数値
+ * @returns 小数点以下の桁数
+ */
+function _getDecimalPlaces(value: number): number {
+    if (Math.floor(value) === value) {
+        return 0;
+    }
+    const valueString = value.toString();
+    const decimalPart = valueString.split('.')[1];
+    return decimalPart ? decimalPart.length : 0;
+}
+
 export class Fraction {
     // #region プライベート変数
     /**
@@ -34,7 +49,7 @@ export class Fraction {
      * @param numerator   分子
      * @param denominator 分母
      */
-    public constructor(numerator: number, denominator: number) {
+    public constructor(numerator: number, denominator?: number) {
         this.setValue(numerator, denominator);
     }
 
@@ -113,9 +128,8 @@ export class Fraction {
      * numeratorは整数でなければならない。
      * denominatorは0であってはならない。
      */
-    public setValue(numerator: number, denominator: number) {
-        __mustBeInteger(numerator, 'numerator');
-        __mustBeInteger(denominator, 'denominator');
+    public setValue(numerator: number, denominator?: number) {
+        denominator = denominator === undefined ? 1 : denominator;
         __mustNotBeZero(denominator, 'denominator');
 
         if (numerator === 0) {
@@ -146,10 +160,11 @@ export class Fraction {
      * @param other 足し合わせる分数
      * @returns 足し合わせた結果
      */
-    public add(other: Fraction): Fraction {
+    public add(other: Fraction | number, otherDenominator?: number): Fraction {
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
-        // (a, b) + (c, d) = (a*d + b*c, b*d)
+        other = this._normalizeArguments(other, otherDenominator);
 
+        // (a, b) + (c, d) = (a*d + b*c, b*d)
         const lcm = resolveLcm(this.denominator, other.denominator);
         const a = (lcm / this.denominator) * this.numerator * (this.isNegative ? -1 : 1);
         const b = (lcm / other.denominator) * other.numerator * (other.isNegative ? -1 : 1);
@@ -172,7 +187,8 @@ export class Fraction {
      * @param other 引く分数
      * @returns 引いた結果
      */
-    public subtract(other: Fraction): Fraction {
+    public subtract(other: Fraction | number, otherDenominator?: number): Fraction {
+        other = this._normalizeArguments(other, otherDenominator);
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) - (c, d) = (a*d-b*c, b*d)
         const lcm = resolveLcm(this.denominator, other.denominator);
@@ -197,7 +213,8 @@ export class Fraction {
      * @param other 掛ける分数
      * @returns 掛けた結果
      */
-    public multiply(other: Fraction): Fraction {
+    public multiply(other: Fraction | number, otherDenominator?: number): Fraction {
+        other = this._normalizeArguments(other, otherDenominator);
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a, b) * (c, d) = (a*c, b*d)
         const numerator =
@@ -222,7 +239,8 @@ export class Fraction {
      *
      * @throws otherが0の場合はエラーが発生する。
      */
-    public divide(other: Fraction): Fraction {
+    public divide(other: Fraction | number, otherDenominator?: number): Fraction {
+        other = this._normalizeArguments(other, otherDenominator);
         // LEARN [SPF003][チャレンジ課題]: 関数のオーバライド
         // (a,b) / (c,d) = (a*d, b*c)
         __mustNotBeZero(other.numerator, '0で割ることはできません');
@@ -267,8 +285,20 @@ export class Fraction {
      * この分数を約分します。
      */
     protected simplify(): void {
+        const decimalPlacesNumerator = _getDecimalPlaces(this.numerator);
+        const decimalPlacesDenominator = _getDecimalPlaces(this.denominator);
+        const maxDecimalPlaces = Math.max(decimalPlacesNumerator, decimalPlacesDenominator);
+        if (maxDecimalPlaces > 0) {
+            const factor = 10 ** maxDecimalPlaces;
+            this._numerator = Math.round(this.numerator * factor);
+            this._denominator = Math.round(this.denominator * factor);
+        }
+
         const gcd = resolveGcd(this.numerator, this.denominator);
         this._numerator = this.numerator / gcd;
         this._denominator = this.denominator / gcd;
+    }
+    protected _normalizeArguments(other: Fraction | number, otherDenominator?: number): Fraction {
+        return other instanceof Fraction ? other : new Fraction(other, otherDenominator);
     }
 }
