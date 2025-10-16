@@ -20,6 +20,7 @@ const gcdDictionary: Record<string, number> = {
     '3gcd2': 1,
     '5gcd6': 1,
     '5gcd7': 1,
+    '5gcd10': 5,
     '5gcd12': 1,
     '5gcd20': 5,
     '7gcd24': 1,
@@ -226,6 +227,14 @@ describe('Fraction 単体テスト', () => {
             expect(result.numerator).toBe(5);
             expect(result.denominator).toBe(6);
         });
+        test('-1/2 - 1/3 = -5/6', () => {
+            const f1 = new Fraction(-1, 2);
+            const f2 = new Fraction(1, 3);
+            const result = f1.subtract(f2);
+            expect(result.isNegative).toBe(true);
+            expect(result.numerator).toBe(5);
+            expect(result.denominator).toBe(6);
+        });
         test('1/2 - 1 = -1/2', () => {
             const f1 = new Fraction(1, 2);
             const f2 = 1;
@@ -281,6 +290,42 @@ describe('Fraction 単体テスト', () => {
             expect(() => {
                 f1.divide(f2);
             }).toThrow();
+        });
+    });
+
+    describe('toString()', () => {
+        test('1/2', () => {
+            const expected = '1/2';
+            const actual = new Fraction(1, 2).toString();
+
+            expect(actual).toEqual(expected);
+        });
+        test('-1/2', () => {
+            const expected = '-1/2';
+            const actual = new Fraction(-1, 2).toString();
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('equal', () => {
+        test('2/4 === 1/2', () => {
+            const f1 = new Fraction(2, 4);
+            const f2 = new Fraction(1 / 2);
+
+            expect(f1.equals(f2)).toBeTruthy();
+        });
+        test('2/4 === 1/2', () => {
+            const f1 = new Fraction(2, 4);
+            const f2 = new Fraction(1, 2);
+
+            expect(f1.equals(f2)).toBeTruthy();
+        });
+        test('-2/4 === -1/2', () => {
+            const f1 = new Fraction(-2, 4);
+            const f2 = new Fraction(1, -2);
+
+            expect(f1.equals(f2)).toBeTruthy();
         });
     });
 });

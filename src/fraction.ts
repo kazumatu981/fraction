@@ -8,9 +8,9 @@ import { resolveGcd, resolveLcm } from './numerics';
  * @returns 小数点以下の桁数
  */
 function _getDecimalPlaces(value: number): number {
-    if (Math.floor(value) === value) {
-        return 0;
-    }
+    // if (Math.floor(value) === value) {
+    //     return 0;
+    // }
     const valueString = value.toString();
     const decimalPart = valueString.split('.')[1];
     return decimalPart ? decimalPart.length : 0;
